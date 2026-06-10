@@ -19,7 +19,7 @@ const PRODUCTS = [
     { id: 11, name: "Keratin Smooth Shampoo",     brand: "KAPOK",      cat: "hair",     price: 28,  mrp: 35,  rating: 4.6, reviews: 892,  badge: "bestseller", img: "../images/hair-2.png", desc: "Sulfate-free, salon-grade smoothness." },
     { id: 12, name: "Oud Royale EDP 100ml",       brand: "MAISON N",   cat: "fragrance",price: 145, mrp: 180, rating: 4.9, reviews: 287,  badge: "new",        img: "../images/fragrance.png" }
 ];
-
+ 
 /* ----- State ----- */
 const state = {
     cart: JSON.parse(localStorage.getItem('bloomskin_cart') || '[]'),
