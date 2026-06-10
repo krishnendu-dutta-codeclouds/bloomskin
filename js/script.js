@@ -49,6 +49,28 @@ const bumpBadge = (el) => {
     el.classList.add('bump');
 };
 
+/* ----- Lenis Smooth Scroll ----- */
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth: true,
+    smoothTouch: false,
+    touchMultiplier: 2,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+/* Connect Lenis with GSAP ScrollTrigger */
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+});
+gsap.ticker.lagSmoothing(0);
+
 // Global image fallback: replace broken images with a generic beauty image
 document.addEventListener('error', (e) => {
     const el = e.target;
