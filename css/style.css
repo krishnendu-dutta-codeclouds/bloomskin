@@ -896,8 +896,8 @@ ul { list-style: none; }
 /* =========================== Footer =========================== */
 .footer { background: var(--dark); color: #ccc; padding: 80px 0 0; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 60px; }
-.footer-col h4 { color: #fff; margin-bottom: 18px; font-size: 15px; font-family: 'Plus Jakarta Sans', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-.footer-col .logo { color: #fff; font-size: 22px; position:static }
+.footer-col h4 { color: #fff; margin-bottom: 18px; font-size: 15px; font-family: 'Playfair Display', serif; letter-spacing: 1px; }
+.footer-col .logo { color: #fff; font-size: 26px; position:static }
 .footer-col p { font-size: 14px; line-height: 1.6; margin: 12px 0 20px; }
 .footer-col a { display: block; padding: 6px 0; font-size: 14px; color: #ccc; }
 .footer-col a:hover { color: var(--primary); transform: translateX(4px); }
