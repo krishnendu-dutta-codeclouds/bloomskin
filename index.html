@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BloomSkin - Premium beauty & skincare store. Shop top brands, exclusive offers, beauty advice and free shipping on orders above $50.">
+    <title>BloomSkin | Premium Skincare, Makeup & Wellness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top Promo Bar -->
+    <div class="promo-bar">
+        <div class="promo-track">
+            <span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING on orders above $50</span>
+            <span><i class="fa-solid fa-gift"></i> Use code <b>GLOW20</b> for 20% off your first order</span>
+            <span><i class="fa-solid fa-rotate-left"></i> 30-day easy returns &amp; exchanges</span>
+            <span><i class="fa-solid fa-leaf"></i> 100% Authentic &amp; Cruelty-Free</span>
+            <span><i class="fa-solid fa-truck-fast"></i> FREE SHIPPING on orders above $50</span>
+            <span><i class="fa-solid fa-gift"></i> Use code <b>GLOW20</b> for 20% off your first order</span>
+        </div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <a href="#" class="logo">Bloom<span>Skin</span></a>
+
+            <!-- Mega Menu (Desktop) -->
+            <nav class="main-nav" id="mainNav">
+                <button class="icon-btn menu-close" id="menuClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+                <ul class="nav-list">
+                    <li class="nav-item" data-menu="makeup">
+                        <a href="#shop">Makeup <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-col">
+                                <h4>Face</h4>
+                                <a href="#">Foundation</a>
+                                <a href="#">Concealer</a>
+                                <a href="#">Compact &amp; Powder</a>
+                                <a href="#">Blush</a>
+                                <a href="#">Highlighter</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4>Eyes</h4>
+                                <a href="#">Eyeshadow Palettes</a>
+                                <a href="#">Mascara</a>
+                                <a href="#">Eyeliner</a>
+                                <a href="#">Kajal</a>
+                                <a href="#">Brows</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4>Lips</h4>
+                                <a href="#">Lipstick</a>
+                                <a href="#">Lip Gloss</a>
+                                <a href="#">Lip Liner</a>
+                                <a href="#">Liquid Lipstick</a>
+                            </div>
+                            <div class="mega-col mega-feature">
+                                <img src="https://source.unsplash.com/400x400/?makeup,cosmetics" alt="Makeup">
+                                <div>
+                                    <span class="tag">NEW IN</span>
+                                    <p>Velvet Matte Collection</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item" data-menu="skin">
+                        <a href="#shop">Skincare <i class="fa-solid fa-chevron-down"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-col">
+                                <h4>By Concern</h4>
+                                <a href="#">Acne &amp; Blemishes</a>
+                                <a href="#">Anti-Ageing</a>
+                                <a href="#">Brightening</a>
+                                <a href="#">Hydration</a>
+                                <a href="#">Sun Protection</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4>Cleansers</h4>
+                                <a href="#">Face Wash</a>
+                                <a href="#">Cleansing Oil</a>
+                                <a href="#">Micellar Water</a>
+                                <a href="#">Exfoliators</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4>Treatments</h4>
+                                <a href="#">Serums</a>
+                                <a href="#">Face Masks</a>
+                                <a href="#">Eye Care</a>
+                                <a href="#">Spot Treatment</a>
+                            </div>
+                            <div class="mega-col mega-feature">
+                                <img src="https://source.unsplash.com/400x400/?skincare,serum" alt="Skincare">
+                                <div>
+                                    <span class="tag tag-accent">BESTSELLER</span>
+                                    <p>Vitamin C Glow Routine</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="#brands">Brands</a></li>
+                    <li class="nav-item"><a href="#offers">Offers</a></li>
+                    <li class="nav-item"><a href="#beauty">Beauty Advice</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn mobile-search-btn" id="mobileSearchBtn" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="badge" id="wishlistCount" data-zero="true">0</span>
+                </button>
+                <button class="icon-btn" id="userBtn" aria-label="Account">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button class="icon-btn cart-btn" id="cartBtn" aria-label="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="badge" id="cartCount" data-zero="true">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nav Backdrop (for mobile menu) -->
+    <div id="navBackdrop" class="nav-backdrop" aria-hidden="true"></div>
+
+    <main id="app">
+        <!-- Hero Carousel -->
+        <section class="hero-section">
+            <div class="swiper hero-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide hero-slide" style="--bg:linear-gradient(120deg,#fbe9e3 0%,#f7d5cb 100%);">
+                        <div class="hero-text">
+                            <span class="kicker">NEW LAUNCH</span>
+                            <h1>Glow Like <em>Never Before</em></h1>
+                            <p>Discover our Vitamin C + Hyaluronic ritual. Clinically proven to brighten in 14 days.</p>
+                            <div class="hero-cta">
+                                <a href="#shop" class="btn btn-solid">Shop the Routine</a>
+                                <a href="#" class="btn btn-ghost">Watch Film <i class="fa-solid fa-play"></i></a>
+                            </div>
+                            <div class="hero-meta">
+                                <div><b>4.9</b><span>★★★★★</span></div>
+                                <div><b>50K+</b><span>Reviews</span></div>
+                                <div><b>Derma</b><span>Tested</span></div>
+                            </div>
+                        </div>
+                        <div class="hero-visual">
+                            <img src="https://source.unsplash.com/900x600/?serum,skincare" alt="Glow Serum">
+                            <div class="floating-card card-1">
+                                <i class="fa-solid fa-leaf"></i>
+                                <div><b>100% Vegan</b><span>Cruelty free</span></div>
+                            </div>
+                            <div class="floating-card card-2">
+                                <div class="price-tag">$64</div>
+                                <span>Limited Edition</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide hero-slide" style="--bg:linear-gradient(120deg,#e6f1f3 0%,#cfdfe2 100%);">
+                        <div class="hero-text">
+                            <span class="kicker">EXCLUSIVE OFFER</span>
+                            <h1>Up to <em>40% Off</em></h1>
+                            <p>The biggest beauty sale of the season. Free 7-piece gift on orders above $80.</p>
+                            <div class="hero-cta">
+                                <a href="#offers" class="btn btn-solid">Shop Sale</a>
+                                <a href="#" class="btn btn-ghost">View Offers</a>
+                            </div>
+                        </div>
+                        <div class="hero-visual">
+                            <img src="https://source.unsplash.com/900x600/?beauty,sale,makeup" alt="Beauty Sale">
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide hero-slide" style="--bg:linear-gradient(120deg,#f3e8ff 0%,#e0c3fc 100%);">
+                        <div class="hero-text">
+                            <span class="kicker">BEAUTY EDIT</span>
+                            <h1>Find Your <em>Perfect Match</em></h1>
+                            <p>Take our 60-second skin quiz and unlock a personalized routine built by experts.</p>
+                            <div class="hero-cta">
+                                <a href="#beauty" class="btn btn-solid">Take the Quiz</a>
+                                <a href="#" class="btn btn-ghost">Book Consultation</a>
+                            </div>
+                        </div>
+                        <div class="hero-visual">
+                            <img src="https://source.unsplash.com/900x600/?beauty,quiz,skin" alt="Beauty Quiz">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination hero-pagination"></div>
+                <div class="swiper-button-prev hero-prev"></div>
+                <div class="swiper-button-next hero-next"></div>
+            </div>
+        </section>
+
+        <!-- Service Strip -->
+        <section class="service-strip">
+            <div class="container service-grid">
+                <div class="service-item">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <div><b>Free Shipping</b><span>On orders $50+</span></div>
+                </div>
+                <div class="service-item">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <div><b>Easy Returns</b><span>30-day window</span></div>
+                </div>
+                <div class="service-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div><b>100% Authentic</b><span>Sourced directly</span></div>
+                </div>
+                <div class="service-item">
+                    <i class="fa-solid fa-headset"></i>
+                    <div><b>Beauty Experts</b><span>24/7 support</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Grid -->
+        <section class="section category-section">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">Shop By Category</h2>
+                        <p class="section-sub">Explore our most-loved beauty categories</p>
+                    </div>
+                    <a href="#" class="link-arrow">View All <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <div class="cat-img"><img src="https://source.unsplash.com/300x300/?skincare" alt="Skincare"></div>
+                        <span>Skincare</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="cat-img"><img src="https://source.unsplash.com/300x300/?makeup" alt="Makeup"></div>
+                        <span>Makeup</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="cat-img"><img src="https://source.unsplash.com/300x300/?haircare" alt="Haircare"></div>
+                        <span>Haircare</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="cat-img"><img src="https://source.unsplash.com/300x300/?fragrance,perfume" alt="Fragrance"></div>
+                        <span>Fragrance</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="cat-img"><img src="https://source.unsplash.com/300x300/?bath,body" alt="Bath & Body"></div>
+                        <span>Bath &amp; Body</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="cat-img"><img src="https://source.unsplash.com/300x300/?beauty,tools" alt="Tools"></div>
+                        <span>Tools</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="cat-img"><img src="https://source.unsplash.com/300x300/?mom,baby" alt="Mom & Baby"></div>
+                        <span>Mom &amp; Baby</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="cat-img"><img src="https://source.unsplash.com/300x300/?wellness,health" alt="Wellness"></div>
+                        <span>Wellness</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Strip -->
+        <section id="offers" class="offers-banner">
+            <div class="container offer-card">
+                <div class="offer-content">
+                    <span class="kicker">LIMITED TIME</span>
+                    <h2>Beauty Bonanza — Save up to 50%</h2>
+                    <p>Top brands. Free gifts. Ends in <span class="countdown" id="countdown">02d 14h 22m 09s</span></p>
+                    <a href="#" class="btn btn-solid">Shop the Sale</a>
+                </div>
+                <div class="offer-visual">
+                    <div class="floating-pill pill-1">-40%</div>
+                    <div class="floating-pill pill-2">FREE GIFT</div>
+                    <img src="https://source.unsplash.com/600x400/?sale,beauty" alt="Sale">
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Sellers (Product Carousel) -->
+        <section id="shop" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">Bestsellers</h2>
+                        <p class="section-sub">Loved by our community — 100K+ sold this month</p>
+                    </div>
+                    <div class="tabs" id="bestsellerTabs">
+                        <button class="tab active" data-tab="all">All</button>
+                        <button class="tab" data-tab="skincare">Skincare</button>
+                        <button class="tab" data-tab="makeup">Makeup</button>
+                        <button class="tab" data-tab="hair">Hair</button>
+                    </div>
+                </div>
+
+                <div class="shop-bar">
+                    <span class="count-pill" id="productCount">0 products</span>
+                    <select id="sortSelect" aria-label="Sort products">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="rating">Top Rated</option>
+                        <option value="discount">Best Discount</option>
+                    </select>
+                </div>
+
+                <div class="product-grid" id="bestsellerGrid"></div>
+            </div>
+        </section>
+
+        <!-- Brand Showcase -->
+        <section id="brands" class="section brand-section">
+            <div class="container">
+                <div class="section-head center">
+                    <h2 class="section-title">Shop By Brand</h2>
+                    <p class="section-sub">500+ premium & emerging beauty brands</p>
+                </div>
+                <div class="brand-grid">
+                    <a href="#" class="brand-card"><span>ESTÉE</span></a>
+                    <a href="#" class="brand-card"><span>LA MER</span></a>
+                    <a href="#" class="brand-card"><span>MAC</span></a>
+                    <a href="#" class="brand-card"><span>NARS</span></a>
+                    <a href="#" class="brand-card"><span>DIOR</span></a>
+                    <a href="#" class="brand-card"><span>CHANEL</span></a>
+                    <a href="#" class="brand-card"><span>CLINIQUE</span></a>
+                    <a href="#" class="brand-card"><span>FRESH</span></a>
+                    <a href="#" class="brand-card"><span>TATCHA</span></a>
+                    <a href="#" class="brand-card"><span>HUDA</span></a>
+                    <a href="#" class="brand-card"><span>RARE</span></a>
+                    <a href="#" class="brand-card"><span>THE ORD.</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Editorial / Beauty Advice -->
+        <section id="beauty" class="section editorial">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <span class="kicker">BEAUTY EDITORIAL</span>
+                        <h2 class="section-title">Tips, Trends & Routines</h2>
+                    </div>
+                    <a href="#" class="link-arrow">Read All <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="editorial-grid">
+                    <article class="editorial-card large">
+                        <img src="https://source.unsplash.com/900x600/?routine,skincare" alt="Routine">
+                        <div class="editorial-text">
+                            <span class="tag tag-accent">Routine</span>
+                            <h3>The 7-step Korean Glass Skin Routine</h3>
+                            <p>By our in-house dermatologist · 6 min read</p>
+                        </div>
+                    </article>
+                    <article class="editorial-card">
+                        <img src="https://source.unsplash.com/600x400/?serum,skincare" alt="Serums">
+                        <div class="editorial-text">
+                            <span class="tag">Skincare</span>
+                            <h3>Serums 101: which one is right for you?</h3>
+                            <p>4 min read</p>
+                        </div>
+                    </article>
+                    <article class="editorial-card">
+                        <img src="https://source.unsplash.com/600x400/?makeup,cosmetics" alt="Makeup">
+                        <div class="editorial-text">
+                            <span class="tag">Makeup</span>
+                            <h3>5-minute everyday makeup look</h3>
+                            <p>3 min read</p>
+                        </div>
+                    </article>
+                    <article class="editorial-card">
+                        <img src="https://source.unsplash.com/600x400/?wellness,spa" alt="Wellness">
+                        <div class="editorial-text">
+                            <span class="tag">Wellness</span>
+                            <h3>Self-care rituals that actually work</h3>
+                            <p>5 min read</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beauty Consultation -->
+        <section class="consultation">
+            <div class="container consult-grid">
+                <div class="consult-text">
+                    <span class="kicker">VIRTUAL CONSULTATION</span>
+                    <h2>Talk to a Beauty Expert — Free</h2>
+                    <p>One-on-one video session with certified makeup artists and dermatologists. Get tailored routines, product picks and skin analysis.</p>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Personalised skin analysis</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Curated product matches</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Free 15-min session, no purchase required</li>
+                    </ul>
+                    <a href="#" class="btn btn-solid">Book a Session</a>
+                </div>
+                <div class="consult-card">
+                    <div class="consult-avatar"><img src="https://source.unsplash.com/200x200/?expert,consultant,beauty" alt="Expert"></div>
+                    <div>
+                        <b>Maya, Skin Expert</b>
+                        <span class="rating">★★★★★ 4.9 · 12K reviews</span>
+                    </div>
+                    <div class="slots">
+                        <div class="slot"><span>Today</span><b>4:30 PM</b></div>
+                        <div class="slot active"><span>Tomorrow</span><b>11:00 AM</b></div>
+                        <div class="slot"><span>Fri</span><b>2:15 PM</b></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section testimonial-section">
+            <div class="container">
+                <div class="section-head center">
+                    <h2 class="section-title">Loved by 2M+ Beauty Enthusiasts</h2>
+                    <p class="section-sub">Real reviews from our community</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>"The Vitamin C serum transformed my skin in two weeks. My pigmentation is gone!"</p>
+                        <div class="t-user"><img src="https://i.pravatar.cc/100?img=47" alt=""><div><b>Ananya R.</b><span>Verified buyer</span></div></div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>"Fast delivery, authentic products, and the packaging feels luxurious. 10/10."</p>
+                        <div class="t-user"><img src="https://i.pravatar.cc/100?img=12" alt=""><div><b>Priya S.</b><span>Verified buyer</span></div></div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>"Their beauty quiz matched me with the perfect routine. Saved me hours of research."</p>
+                        <div class="t-user"><img src="https://i.pravatar.cc/100?img=32" alt=""><div><b>Riya M.</b><span>Verified buyer</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Download -->
+        <section class="app-banner">
+            <div class="container app-grid">
+                <div>
+                    <h2>Download the BloomSkin App</h2>
+                    <p>Get exclusive app-only offers, AR try-on, faster checkout and beauty tips in your pocket.</p>
+                    <div class="store-row">
+                        <a href="#" class="store-btn"><i class="fa-brands fa-apple"></i><div><span>Download on the</span><b>App Store</b></div></a>
+                        <a href="#" class="store-btn"><i class="fa-brands fa-google-play"></i><div><span>Get it on</span><b>Google Play</b></div></a>
+                    </div>
+                </div>
+                <div class="phone-mock">
+                    <div class="phone">
+                        <div class="phone-bar"></div>
+                        <img src="https://source.unsplash.com/300x300/?app,phone,beauty" alt="App">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container news-inner">
+                <h2>Join the BloomSkin Circle</h2>
+                <p>Subscribe for 15% off your first order, exclusive launches and beauty news.</p>
+                <form class="news-form" id="newsForm">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-solid">Subscribe</button>
+                </form>
+                <small>By subscribing, you agree to our Privacy Policy.</small>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-grid">
+                <div class="footer-col">
+                    <h4 class="logo">Bloom<span>Skin</span></h4>
+                    <p>Your destination for premium beauty. Curated brands, expert advice and a community that celebrates every kind of beautiful.</p>
+                    <div class="socials">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <a href="#">Makeup</a>
+                    <a href="#">Skincare</a>
+                    <a href="#">Haircare</a>
+                    <a href="#">Fragrance</a>
+                    <a href="#">Tools</a>
+                    <a href="#">Men's Grooming</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Help</h4>
+                    <a href="#">Track Order</a>
+                    <a href="#">Returns &amp; Refunds</a>
+                    <a href="#">Shipping Info</a>
+                    <a href="#">FAQs</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="footer-col">
+                    <h4>About BloomSkin</h4>
+                    <a href="#">Our Story</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                    <a href="#">Sustainability</a>
+                    <a href="#">Affiliate Program</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Get the app</h4>
+                    <a href="#" class="store-mini"><i class="fa-brands fa-apple"></i> App Store</a>
+                    <a href="#" class="store-mini"><i class="fa-brands fa-google-play"></i> Google Play</a>
+                    <h4 style="margin-top:24px">We accept</h4>
+                    <div class="payments">
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-cc-amex"></i>
+                        <i class="fa-brands fa-cc-paypal"></i>
+                        <i class="fa-brands fa-cc-apple-pay"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom container">
+                <span>© 2026 BloomSkin. All rights reserved.</span>
+                <div class="legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Cart Drawer -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="drawer cart-drawer" id="cartDrawer">
+        <div class="drawer-head">
+            <h3>Your Bag <span id="cartDrawerCount">(0)</span></h3>
+            <button class="icon-btn" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body" id="cartItems">
+            <div class="empty-state" id="emptyCart">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <p>Your bag is empty</p>
+                <a href="#shop" class="btn btn-solid" onclick="closeDrawer('cartDrawer')">Start Shopping</a>
+            </div>
+        </div>
+        <div class="drawer-foot">
+            <div class="cart-row"><span>Subtotal</span><b id="cartSubtotal">$0.00</b></div>
+            <div class="cart-row muted"><span>Shipping</span><b>FREE</b></div>
+            <div class="cart-row total"><span>Total</span><b id="cartTotal">$0.00</b></div>
+            <button class="btn btn-solid btn-full" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Wishlist Drawer -->
+    <aside class="drawer wishlist-drawer" id="wishlistDrawer">
+        <div class="drawer-head">
+            <h3>Wishlist <span id="wishlistDrawerCount">(0)</span></h3>
+            <button class="icon-btn" id="closeWishlist"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body" id="wishlistItems">
+            <div class="empty-state">
+                <i class="fa-regular fa-heart"></i>
+                <p>No items saved yet</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+        <div class="bottom-nav-grid">
+            <a href="#" class="bn-item active" data-target="home">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="#shop" class="bn-item" data-target="shop">
+                <i class="fa-solid fa-grid-2"></i>
+                <span>Shop</span>
+            </a>
+            <button class="bn-center" id="bnCart" aria-label="Cart">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="badge" id="bnCartBadge" data-zero="true">0</span>
+            </button>
+            <a href="#beauty" class="bn-item" data-target="beauty">
+                <i class="fa-regular fa-heart"></i>
+                <span>Beauty</span>
+            </a>
+            <a href="#offers" class="bn-item" data-target="offers">
+                <i class="fa-solid fa-tag"></i>
+                <span>Offers</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Search Modal (Mobile) -->
+    <div class="modal search-modal" id="searchModal">
+        <div class="modal-dialog">
+            <div class="search-modal-head">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search products & brands" id="searchModalInput" autocomplete="off">
+                <button class="icon-btn" id="closeSearchModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="search-modal-results" id="searchModalResults">
+                <div class="empty-state" style="padding:30px 0">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Start typing to find products</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickView">
+        <div class="modal-dialog">
+            <button class="icon-btn modal-close" id="closeQuickView"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body" id="quickViewBody"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
