@@ -897,7 +897,7 @@ ul { list-style: none; }
 .footer { background: var(--dark); color: #ccc; padding: 80px 0 0; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 60px; }
 .footer-col h4 { color: #fff; margin-bottom: 18px; font-size: 15px; font-family: 'Plus Jakarta Sans', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-.footer-col .logo { color: #fff; font-size: 22px; }
+.footer-col .logo { color: #fff; font-size: 22px; position:static }
 .footer-col p { font-size: 14px; line-height: 1.6; margin: 12px 0 20px; }
 .footer-col a { display: block; padding: 6px 0; font-size: 14px; color: #ccc; }
 .footer-col a:hover { color: var(--primary); transform: translateX(4px); }
@@ -927,14 +927,15 @@ ul { list-style: none; }
 .payments i { color: #ccc; }
 .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 24px 0;
+    padding: 24px;
     display: flex;
     justify-content: space-between;
     font-size: 13px;
     flex-wrap: wrap;
     gap: 12px;
 }
-.legal { display: flex; gap: 24px; }
+
+.legal { display: flex; gap: 24px; justify-content: center;}
 .legal a { padding: 0; display: inline; }
 
 /* =========================== Drawer (Cart/Wishlist) =========================== */
@@ -1323,7 +1324,9 @@ ul { list-style: none; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .footer { padding-top: 56px; }
     .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-
+    .footer-bottom.container{
+        padding:15px 15px 30px;
+    }
     .bottom-nav { display: block; }
     .drawer { width: 100%; }
     .toast { bottom: 24px; }
@@ -1348,7 +1351,7 @@ ul { list-style: none; }
     .editorial-card.large { grid-column: span 1; }
     .editorial-card { height: 200px; }
     .phone { width: 200px; height: 400px; padding: 10px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; padding:24px }
     .drawer { width: 100%; }
     .cart-item { grid-template-columns: 64px 1fr auto; gap: 10px; }
     .cart-item img { width: 64px; height: 64px; }
