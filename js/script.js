@@ -4,20 +4,24 @@
 
 'use strict';
 
+/* ----- Base URL for images (works on GitHub Pages and local) ----- */
+const BASE_URL = '.';
+const IMG_PATH = `${BASE_URL}/images`;
+
 /* ----- Product Data ----- */
 const PRODUCTS = [
-    { id: 1,  name: "Vitamin C Glow Serum",       brand: "BloomSkin",     cat: "skincare", price: 64,  mrp: 80,  rating: 4.8, reviews: 1284, badge: "bestseller", img: "/images/skincare.png", desc: "15% Vitamin C + Hyaluronic Acid for radiant skin." },
-    { id: 2,  name: "Velvet Matte Lipstick",      brand: "ROUGE",      cat: "makeup",   price: 28,  mrp: 36,  rating: 4.7, reviews: 932,  badge: "new",        img: "/images/makeup.png", desc: "12-hour long-wear matte finish in 18 shades." },
-    { id: 3,  name: "Hydra-Veil Moisturizer",     brand: "AQUA LUXE",  cat: "skincare", price: 48,  mrp: 60,  rating: 4.9, reviews: 2104, badge: "bestseller", img: "/images/skincare-2.png", desc: "72-hour deep hydration with ceramides." },
-    { id: 4,  name: "Lash Drama Mascara",         brand: "ROUGE",      cat: "makeup",   price: 22,  mrp: 28,  rating: 4.6, reviews: 743,  badge: "",           img: "/images/makeup-2.png", desc: "Volumizing & lengthening, smudge-proof." },
-    { id: 5,  name: "Silk Repair Hair Oil",       brand: "KAPOK",      cat: "hair",     price: 36,  mrp: 45,  rating: 4.7, reviews: 612,  badge: "new",        img: "/images/hair.png", desc: "Argan + rosehip oil for frizz-free shine." },
-    { id: 6,  name: "Sunshield SPF 50 PA++++",    brand: "BloomSkin",     cat: "skincare", price: 38,  mrp: 48,  rating: 4.8, reviews: 1567, badge: "",           img: "/images/skincare-3.png", desc: "Lightweight, invisible, no white cast." },
-    { id: 7,  name: "Glow Booster Drops",         brand: "AURA",       cat: "skincare", price: 42,  mrp: 52,  rating: 4.6, reviews: 489,  badge: "new",        img: "/images/skincare-4.png", desc: "Mix with foundation for instant luminosity." },
-    { id: 8,  name: "Velvet Eye Shadow Palette",  brand: "ROUGE",      cat: "makeup",   price: 54,  mrp: 68,  rating: 4.9, reviews: 1102, badge: "bestseller", img: "/images/makeup-3.png", desc: "16 buttery shades from mattes to shimmers." },
-    { id: 9,  name: "Detox Clay Mask",            brand: "PURE",       cat: "skincare", price: 32,  mrp: 40,  rating: 4.5, reviews: 678,  badge: "",           img: "/images/skincare-4.png", desc: "Kaolin & charcoal for pore-purifying detox." },
-    { id: 10, name: "Satin Touch Blush",          brand: "ROUGE",      cat: "makeup",   price: 26,  mrp: 32,  rating: 4.7, reviews: 421,  badge: "",           img: "/images/makeup-4.png", desc: "Buildable natural flush, 6 shades." },
-    { id: 11, name: "Keratin Smooth Shampoo",     brand: "KAPOK",      cat: "hair",     price: 28,  mrp: 35,  rating: 4.6, reviews: 892,  badge: "bestseller", img: "/images/hair-2.png", desc: "Sulfate-free, salon-grade smoothness." },
-    { id: 12, name: "Oud Royale EDP 100ml",       brand: "MAISON N",   cat: "fragrance",price: 145, mrp: 180, rating: 4.9, reviews: 287,  badge: "new",        img: "/images/fragrance.png" }
+    { id: 1,  name: "Vitamin C Glow Serum",       brand: "BloomSkin",     cat: "skincare", price: 64,  mrp: 80,  rating: 4.8, reviews: 1284, badge: "bestseller", img: `${IMG_PATH}/skincare.png`, desc: "15% Vitamin C + Hyaluronic Acid for radiant skin." },
+    { id: 2,  name: "Velvet Matte Lipstick",      brand: "ROUGE",      cat: "makeup",   price: 28,  mrp: 36,  rating: 4.7, reviews: 932,  badge: "new",        img: `${IMG_PATH}/makeup.png`, desc: "12-hour long-wear matte finish in 18 shades." },
+    { id: 3,  name: "Hydra-Veil Moisturizer",     brand: "AQUA LUXE",  cat: "skincare", price: 48,  mrp: 60,  rating: 4.9, reviews: 2104, badge: "bestseller", img: `${IMG_PATH}/skincare-2.png`, desc: "72-hour deep hydration with ceramides." },
+    { id: 4,  name: "Lash Drama Mascara",         brand: "ROUGE",      cat: "makeup",   price: 22,  mrp: 28,  rating: 4.6, reviews: 743,  badge: "",           img: `${IMG_PATH}/makeup-2.png`, desc: "Volumizing & lengthening, smudge-proof." },
+    { id: 5,  name: "Silk Repair Hair Oil",       brand: "KAPOK",      cat: "hair",     price: 36,  mrp: 45,  rating: 4.7, reviews: 612,  badge: "new",        img: `${IMG_PATH}/hair.png`, desc: "Argan + rosehip oil for frizz-free shine." },
+    { id: 6,  name: "Sunshield SPF 50 PA++++",    brand: "BloomSkin",     cat: "skincare", price: 38,  mrp: 48,  rating: 4.8, reviews: 1567, badge: "",           img: `${IMG_PATH}/skincare-3.png`, desc: "Lightweight, invisible, no white cast." },
+    { id: 7,  name: "Glow Booster Drops",         brand: "AURA",       cat: "skincare", price: 42,  mrp: 52,  rating: 4.6, reviews: 489,  badge: "new",        img: `${IMG_PATH}/skincare-4.png`, desc: "Mix with foundation for instant luminosity." },
+    { id: 8,  name: "Velvet Eye Shadow Palette",  brand: "ROUGE",      cat: "makeup",   price: 54,  mrp: 68,  rating: 4.9, reviews: 1102, badge: "bestseller", img: `${IMG_PATH}/makeup-3.png`, desc: "16 buttery shades from mattes to shimmers." },
+    { id: 9,  name: "Detox Clay Mask",            brand: "PURE",       cat: "skincare", price: 32,  mrp: 40,  rating: 4.5, reviews: 678,  badge: "",           img: `${IMG_PATH}/skincare-4.png`, desc: "Kaolin & charcoal for pore-purifying detox." },
+    { id: 10, name: "Satin Touch Blush",          brand: "ROUGE",      cat: "makeup",   price: 26,  mrp: 32,  rating: 4.7, reviews: 421,  badge: "",           img: `${IMG_PATH}/makeup-4.png`, desc: "Buildable natural flush, 6 shades." },
+    { id: 11, name: "Keratin Smooth Shampoo",     brand: "KAPOK",      cat: "hair",     price: 28,  mrp: 35,  rating: 4.6, reviews: 892,  badge: "bestseller", img: `${IMG_PATH}/hair-2.png`, desc: "Sulfate-free, salon-grade smoothness." },
+    { id: 12, name: "Oud Royale EDP 100ml",       brand: "MAISON N",   cat: "fragrance",price: 145, mrp: 180, rating: 4.9, reviews: 287,  badge: "new",        img: `${IMG_PATH}/fragrance.png` }
 ];
  
 /* ----- State ----- */
