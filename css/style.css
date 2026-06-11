@@ -945,8 +945,23 @@ ul { list-style: none; }
 .sk-testimonials { height:120px; border-radius:10px; background: linear-gradient(90deg,#f8f8f8 25%, #eee 50%, #f8f8f8 75%); animation: shimmer 1.6s linear infinite; }
 @keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
 
-/* When site is ready, fade in content gently */
-body.site-ready .header, body.site-ready main, body.site-ready footer { opacity: 0; transform: translateY(8px); }
+/* While loading, keep main content hidden; when ready, fade in gently */
+body:not(.site-ready) .header,
+body:not(.site-ready) main,
+body:not(.site-ready) footer {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 520ms ease, transform 520ms ease;
+    pointer-events: none;
+}
+body.site-ready .header,
+body.site-ready main,
+body.site-ready footer {
+    opacity: 1;
+    transform: none;
+    transition: opacity 640ms cubic-bezier(.22,.9,.32,1), transform 640ms cubic-bezier(.22,.9,.32,1);
+    pointer-events: auto;
+}
 
 /* =========================== Progressive Image Placeholder =========================== */
 .progressive {
