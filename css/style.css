@@ -1306,7 +1306,7 @@ body.site-ready footer {
     position: absolute;
     top: 0;
     right: calc(50% - 22px);
-}
+} 
 .bn-center {
     background: var(--primary);
     color: #fff;

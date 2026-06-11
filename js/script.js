@@ -139,7 +139,7 @@ function initHeroSwiper() {
         navigation: { nextEl: '.hero-next', prevEl: '.hero-prev' }
     });
 }
-
+ 
 /* =========================== Brand Carousel =========================== */
 let brandSwiperInstance = null;
 let brandGsapTween = null;
