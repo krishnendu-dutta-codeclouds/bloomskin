@@ -97,30 +97,53 @@ const heroSwiper = new Swiper('.hero-swiper', {
 });
 
 /* =========================== Brand Carousel =========================== */
-const brandSwiper = new Swiper('.brand-swiper', {
-    slidesPerView: 'auto',
-    spaceBetween: 16,
-    loop: true,
-    autoplay: { delay: 0, disableOnInteraction: false },
-    speed: 3000,
-    breakpoints: {
-        1100: { slidesPerView: 6 },
-        900: { slidesPerView: 5 },
-        600: { slidesPerView: 4 },
-        380: { slidesPerView: 3 }
-    }
-});
+(() => {
+    const brandSlides = document.querySelectorAll('.brand-swiper .swiper-slide').length;
+    const brandLoop = brandSlides > 1;
+    const brandSwiper = new Swiper('.brand-swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 16,
+        loop: brandLoop,
+        autoplay: brandLoop ? { delay: 0, disableOnInteraction: false } : false,
+        speed: 3000,
+        breakpoints: {
+            1100: { slidesPerView: 6 },
+            900: { slidesPerView: 5 },
+            600: { slidesPerView: 4 },
+            380: { slidesPerView: 3 }
+        }
+    });
+})();
 
 /* =========================== Testimonials Carousel =========================== */
-const testimonialSwiper = new Swiper('.testimonial-swiper', {
-    slidesPerView: 1,
-    spaceBetween: 24,
-    loop: true,
-    pagination: { el: '.testimonial-swiper ~ .swiper-pagination', clickable: true },
-    breakpoints: {
-        900: { slidesPerView: 3 }
-    }
-});
+(() => {
+    const tContainer = document.querySelector('.testimonial-swiper');
+    const tSlides = tContainer ? tContainer.querySelectorAll('.swiper-slide').length : 0;
+    const currentSlidesPerView = window.innerWidth >= 900 ? 3 : 1;
+    const testimonialLoop = tSlides > currentSlidesPerView;
+    const testimonialSwiper = new Swiper('.testimonial-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: testimonialLoop,
+        pagination: { el: '.testimonial-swiper ~ .swiper-pagination', clickable: true },
+        breakpoints: {
+            900: { slidesPerView: 3 }
+        }
+    });
+
+    // Re-evaluate on resize: if breakpoint changes and loop becomes valid/invalid, re-init
+    let lastBreakpoint = window.innerWidth >= 900 ? 'lg' : 'sm';
+    window.addEventListener('resize', () => {
+        const bp = window.innerWidth >= 900 ? 'lg' : 'sm';
+        if (bp !== lastBreakpoint) {
+            lastBreakpoint = bp;
+            // simple approach: reload page to re-init Swiper correctly
+            // or we could destroy and recreate; reload is simplest and safe
+            try { testimonialSwiper.destroy(true, true); } catch(e){}
+            setTimeout(() => location.reload(), 50);
+        }
+    });
+})();
 
 /* =========================== Product Rendering =========================== */
 function getSortedFiltered() {
