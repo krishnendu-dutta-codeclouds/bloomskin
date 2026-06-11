@@ -829,6 +829,43 @@ ul { list-style: none; }
 .slot span { display: block; font-size: 11px; opacity: 0.8; }
 .slot b { font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; }
 
+/* Consult picker popup */
+.consult-picker-popup {
+    position: absolute;
+    z-index: 55;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(100% + 12px);
+    min-width: 320px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    padding: 12px;
+    display: none;
+}
+.consult-picker-popup[aria-hidden="false"] { display: block; }
+.consult-picker { display:flex; gap:12px; align-items:flex-start; }
+.calendar { width: 200px; }
+.calendar-header { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px; }
+.calendar-header .month-year { font-weight:700; }
+.calendar-weekdays { font-size:12px; color:var(--text-muted); display:flex; gap:6px; justify-content:space-between; padding:4px 2px; }
+.calendar-days { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; }
+.calendar-day { padding:8px; text-align:center; border-radius:8px; cursor:pointer; }
+.calendar-day.inactive { color:var(--text-muted); background:transparent; cursor:default; }
+.calendar-day:hover:not(.inactive) { background:var(--bg-soft); }
+.calendar-day.selected { background:var(--primary); color:#fff; }
+.time-section { min-width: 160px; }
+.time-slots { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; }
+.time-slot { padding:6px 8px; border-radius:8px; background:var(--bg-soft); cursor:pointer; font-size:13px; }
+.time-slot.selected { background:var(--primary); color:#fff; }
+.picker-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:8px; }
+
+@media (max-width:900px) {
+    .consult-picker-popup { left: 16px; transform:none; right:16px; min-width: auto; }
+    .consult-picker { flex-direction:column; }
+}
+
 /* =========================== Testimonials =========================== */
 .testimonial-swiper {
     width: 100%;

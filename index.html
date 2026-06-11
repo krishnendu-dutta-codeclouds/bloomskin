@@ -309,6 +309,30 @@
                         <div class="slot active"><span>Tomorrow</span><b>11:00 AM</b></div>
                         <div class="slot"><span>Fri</span><b>2:15 PM</b></div>
                     </div>
+                    <div style="margin-top:12px">
+                        <button class="btn btn-ghost" id="openConsultPicker">Choose Date &amp; Time</button>
+                    </div>
+                    <div class="consult-picker-popup" id="consultPicker" aria-hidden="true">
+                        <div class="consult-picker">
+                            <div class="calendar">
+                                <div class="calendar-header">
+                                    <button class="cal-prev" aria-label="Previous month">‹</button>
+                                    <div class="month-year"></div>
+                                    <button class="cal-next" aria-label="Next month">›</button>
+                                </div>
+                                <div class="calendar-weekdays">Sun Mon Tue Wed Thu Fri Sat</div>
+                                <div class="calendar-days" role="grid"></div>
+                            </div>
+                            <div class="time-section">
+                                <h4>Available times</h4>
+                                <div class="time-slots"></div>
+                                <div class="picker-actions">
+                                    <button class="btn btn-primary" id="confirmConsult" disabled>Confirm</button>
+                                    <button class="btn btn-ghost" id="closeConsultPicker">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div> 
         </section>

@@ -975,5 +975,124 @@ window.addEventListener('load', () => {
         initTestimonialSwiper();
         initHeroSwiper();
         reveal();
+        // init consultation picker
+        if (typeof initConsultPicker === 'function') initConsultPicker();
     }, '>-0.1');
 });
+
+/* =========================== Consultation Picker =========================== */
+function initConsultPicker() {
+    const openBtn = document.getElementById('openConsultPicker');
+    const popup = document.getElementById('consultPicker');
+    const closeBtn = document.getElementById('closeConsultPicker');
+    const confirmBtn = document.getElementById('confirmConsult');
+    if (!popup || !openBtn) return;
+
+    let current = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
+
+    function renderMonth(date) {
+        const monthYear = popup.querySelector('.month-year');
+        const daysEl = popup.querySelector('.calendar-days');
+        monthYear.textContent = date.toLocaleString(undefined, { month: 'long', year: 'numeric' });
+        daysEl.innerHTML = '';
+        const first = new Date(date.getFullYear(), date.getMonth(), 1);
+        const startDay = first.getDay();
+        const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+        for (let i = 0; i < startDay; i++) {
+            const d = document.createElement('div'); d.className = 'calendar-day inactive'; daysEl.appendChild(d);
+        }
+        for (let d = 1; d <= daysInMonth; d++) {
+            const cell = document.createElement('button');
+            cell.type = 'button';
+            cell.className = 'calendar-day';
+            cell.textContent = d;
+            const cellDate = new Date(date.getFullYear(), date.getMonth(), d);
+            const todayStart = new Date(); todayStart.setHours(0,0,0,0);
+            if (cellDate < todayStart) { cell.classList.add('inactive'); }
+            cell.addEventListener('click', () => {
+                if (cell.classList.contains('inactive')) return;
+                popup.querySelectorAll('.calendar-day').forEach(c => c.classList.remove('selected'));
+                cell.classList.add('selected');
+                selectedDate = cellDate;
+                renderTimeSlots(selectedDate);
+                confirmBtn.disabled = true;
+                selectedTime = null;
+            });
+            daysEl.appendChild(cell);
+        }
+    }
+
+    function generateTimesForDate(date) {
+        const times = [];
+        const start = 9 * 60, end = 17 * 60; // 9:00 - 17:00
+        for (let m = start; m <= end; m += 30) {
+            const hh = Math.floor(m / 60), mm = m % 60;
+            const ampm = hh >= 12 ? 'PM' : 'AM';
+            const displayH = ((hh + 11) % 12) + 1;
+            times.push(`${displayH}:${String(mm).padStart(2, '0')} ${ampm}`);
+        }
+        return times;
+    }
+
+    function renderTimeSlots(date) {
+        const ts = popup.querySelector('.time-slots');
+        ts.innerHTML = '';
+        const times = generateTimesForDate(date);
+        times.forEach(t => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'time-slot';
+            b.textContent = t;
+            b.addEventListener('click', () => {
+                popup.querySelectorAll('.time-slot').forEach(x => x.classList.remove('selected'));
+                b.classList.add('selected');
+                selectedTime = t;
+                confirmBtn.disabled = false;
+            });
+            ts.appendChild(b);
+        });
+    }
+
+    openBtn.addEventListener('click', () => {
+        popup.setAttribute('aria-hidden', 'false');
+        // render current month and today's times
+        renderMonth(current);
+        renderTimeSlots(new Date());
+        confirmBtn.disabled = true;
+    });
+
+    closeBtn?.addEventListener('click', () => {
+        popup.setAttribute('aria-hidden', 'true');
+    });
+
+    popup.querySelector('.cal-prev')?.addEventListener('click', () => {
+        current = new Date(current.getFullYear(), current.getMonth() - 1, 1);
+        renderMonth(current);
+    });
+    popup.querySelector('.cal-next')?.addEventListener('click', () => {
+        current = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+        renderMonth(current);
+    });
+
+    confirmBtn?.addEventListener('click', () => {
+        if (!selectedDate || !selectedTime) return;
+        const container = document.querySelector('.consult-card .slots');
+        if (container) {
+            container.querySelectorAll('.slot').forEach(s => s.classList.remove('active'));
+            const label = selectedDate.toLocaleDateString(undefined, { weekday: 'short' });
+            const newSlot = document.createElement('div');
+            newSlot.className = 'slot active';
+            newSlot.innerHTML = `<span>${label}</span><b>${selectedTime}</b>`;
+            container.prepend(newSlot);
+        }
+        toast(`Consultation booked: ${selectedDate.toLocaleDateString()} ${selectedTime}`);
+        popup.setAttribute('aria-hidden', 'true');
+    });
+
+    // close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') popup.setAttribute('aria-hidden', 'true');
+    });
+}
