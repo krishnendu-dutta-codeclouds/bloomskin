@@ -1099,6 +1099,8 @@ function initConsultPicker() {
                 popup.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
                 selectedDate = null; selectedTime = null;
                 if (confirmBtn) confirmBtn.disabled = true;
+                const sel = document.getElementById('consultSelected');
+                if (sel) { sel.classList.remove('confirmed'); sel.textContent = 'No appointment selected'; }
             });
         } else {
             closeBtn.addEventListener('click', () => {
@@ -1121,7 +1123,10 @@ function initConsultPicker() {
         // update placeholder with selected appointment (always update whether old slots exist or not)
         const sel = document.getElementById('consultSelected');
         const label = selectedDate.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
-        if (sel) sel.textContent = `${label} • ${selectedTime}`;
+        if (sel) {
+            sel.textContent = `${label} • ${selectedTime}`;
+            sel.classList.add('confirmed');
+        }
         toast(`Consultation booked: ${selectedDate.toLocaleDateString()} ${selectedTime}`);
         if (!inlineMode) popup.setAttribute('aria-hidden', 'true');
     });

@@ -837,6 +837,13 @@ ul { list-style: none; }
     font-size: 14px;
 }
 
+.consult-selected.confirmed {
+    background: rgba(45,190,124,0.12);
+    border: 1px solid rgba(45,190,124,0.18);
+    color: var(--success);
+    box-shadow: 0 6px 18px rgba(45,190,124,0.06);
+}
+
 /* Consult picker popup */
 .consult-picker-popup {
     position: absolute;
@@ -872,12 +879,12 @@ ul { list-style: none; }
 .calendar-weekdays span { display:flex; align-items:center; justify-content:center; height:34px; font-size:12px; color:var(--text-muted); }
 .calendar-days { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; box-sizing: border-box; }
 .calendar-day { padding:6px; text-align:center; border-radius:8px; cursor:pointer; display:flex; align-items:center; justify-content:center; aspect-ratio:1/1; min-height:34px; box-sizing: border-box; }
-.calendar-day.inactive { color:var(--text-muted); background:transparent; cursor:default; }
+.calendar-day.inactive { color:#d8d8d8; background:transparent; cursor:default; }
 .calendar-day:hover:not(.inactive) { background:var(--bg-soft); }
 .calendar-day.selected { background:var(--primary); color:#fff; }
 .time-section { min-width: 160px; }
 .time-slots { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; }
-.time-slot { padding:6px 8px; border-radius:8px; background:var(--bg-soft); cursor:pointer; font-size:13px; }
+.time-slot { padding:6px 8px; border-radius:8px; background:var(--bg-soft); cursor:pointer; font-size:12px; }
 .time-slot.selected { background:var(--primary); color:#fff; }
 .picker-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:8px; }
 
