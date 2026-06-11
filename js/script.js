@@ -138,6 +138,37 @@ function getSortedFiltered() {
     return list;
 }
 
+/* =========================== QR Code Init =========================== */
+function initAppQR() {
+    const holder = document.getElementById('qrCode');
+    if (!holder || typeof QRCode === 'undefined') return;
+    // Clear any existing
+    holder.innerHTML = '';
+    // Generate QR for app landing (change to production link)
+    const url = 'https://bloomskin.app';
+    const q = new QRCode(holder, {
+        text: url,
+        width: 176,
+        height: 176,
+        colorDark: '#1a1a1a',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    // After render, convert to canvas if image created
+    setTimeout(() => {
+        const canvas = holder.querySelector('canvas');
+        if (canvas) {
+            // apply subtle tint behind the QR using CSS background on parent
+            holder.parentElement.style.background = 'linear-gradient(180deg,#fff 0%, #fff 60%)';
+        }
+        // place logo overlay (already present in DOM)
+    }, 50);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initAppQR();
+});
+
 function renderProducts() {
     const grid = $('#bestsellerGrid');
     if (!grid) return;
