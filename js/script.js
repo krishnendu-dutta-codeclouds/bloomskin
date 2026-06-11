@@ -477,6 +477,24 @@ document.addEventListener('keydown', e => {
     }
 });
 
+/* =========================== Modal scroll trapping =========================== */
+function enableModalScroll(el) {
+    if (!el) return;
+    // prevent global wheel/touch handlers from intercepting when interacting inside dialog
+    const wheel = (e) => { e.stopPropagation(); };
+    const touch = (e) => { e.stopPropagation(); };
+    el.__modalWheel = wheel;
+    el.__modalTouch = touch;
+    el.addEventListener('wheel', wheel, { passive: false });
+    el.addEventListener('touchmove', touch, { passive: false });
+}
+function disableModalScroll(el) {
+    if (!el) return;
+    if (el.__modalWheel) el.removeEventListener('wheel', el.__modalWheel);
+    if (el.__modalTouch) el.removeEventListener('touchmove', el.__modalTouch);
+    delete el.__modalWheel; delete el.__modalTouch;
+}
+
 /* =========================== Quick View Modal =========================== */
 function openQuickView(id) {
     const p = getProduct(id);
@@ -486,7 +504,6 @@ function openQuickView(id) {
     const shades = ['#e85a8a', '#c84777', '#1a1a1a', '#d4af7a', '#2dbe7c', '#6b4f3a'];
     // Render product quick view HTML (don't inject function source)
     $('#quickViewBody').innerHTML = `
-        <div class="qv-grid">
             <div class="qv-media">
                 <img src="${p.img}" alt="${p.name}" loading="lazy">
             </div>
@@ -516,15 +533,20 @@ function openQuickView(id) {
                     <span><i class="fa-solid fa-rotate-left"></i> 30-day returns</span>
                     <span><i class="fa-solid fa-shield-halved"></i> Authentic</span>
                 </div>
-            </div>
-        </div>`;
+            </div>`;
     $('#quickView').classList.add('active');
     // Apply progressive placeholder -> high-res swap for the modal image
     try { progressiveImages(); } catch (e) { /* ignore if progressiveImages not available */ }
     document.body.style.overflow = 'hidden';
+    // Ensure mouse wheel / touchmove events inside modal-dialog don't get intercepted
+    // by global smooth-scroll (Lenis) so the modal content can scroll normally.
+    const dlg = document.querySelector('#quickView .modal-dialog');
+    if (dlg) enableModalScroll(dlg);
 }
 function closeQuickView() {
     $('#quickView')?.classList.remove('active');
+    const dlg = document.querySelector('#quickView .modal-dialog');
+    if (dlg) disableModalScroll(dlg);
     if (!$$('.drawer.active, .modal.active, .search-modal.active').length) {
         document.body.style.overflow = '';
     }
