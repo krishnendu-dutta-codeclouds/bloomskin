@@ -484,68 +484,43 @@ function openQuickView(id) {
     const off = Math.round(((p.mrp - p.price) / p.mrp) * 100);
     const inWish = state.wishlist.includes(p.id);
     const shades = ['#e85a8a', '#c84777', '#1a1a1a', '#d4af7a', '#2dbe7c', '#6b4f3a'];
+    // Render product quick view HTML (don't inject function source)
     $('#quickViewBody').innerHTML = `
-
-    /* =========================== Progressive Image Loading =========================== */
-    function progressiveImages() {
-        const placeholder = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="100%" height="100%" fill="%23f5f3f6"/></svg>';
-        const imgs = Array.from(document.querySelectorAll('img:not([data-ignore-progressive])'));
-        imgs.forEach(img => {
-            // already handled
-            if (img.dataset.progressive === 'done') return;
-            // store original source
-            if (!img.dataset.src) img.dataset.src = img.src || '';
-            // skip if no real src
-            if (!img.dataset.src) return;
-            // set placeholder only if not already placeholder
-            if (img.src && !img.dataset.placeholderApplied) {
-                img.dataset.placeholderApplied = '1';
-                img.src = placeholder;
-                img.classList.add('progressive', 'img-placeholder');
-            }
-            // load high-res
-            const hi = new Image();
-            hi.src = img.dataset.src;
-            hi.onload = () => {
-                img.src = hi.src;
-                img.classList.remove('img-placeholder');
-                img.classList.add('loaded');
-                // remove blur after small delay so transition is visible
-                setTimeout(() => { img.classList.remove('progressive'); img.dataset.progressive = 'done'; }, 60);
-            };
-            hi.onerror = () => { img.dataset.progressive = 'error'; };
-        });
-    }
-
-        <img src="${p.img}" alt="${p.name}">
-        <div>
-            <div class="product-brand">${p.brand}</div>
-            <h2 class="product-name">${p.name}</h2>
-            <div class="product-rating">
-                <span class="stars">${starStr(p.rating)}</span>
-                <span class="count">${p.rating} · ${p.reviews} reviews</span>
+        <div class="qv-grid">
+            <div class="qv-media">
+                <img src="${p.img}" alt="${p.name}" loading="lazy">
             </div>
-            <div class="product-price-row" style="margin:12px 0 8px">
-                <span class="product-price">${fmt(p.price)}</span>
-                <span class="product-strike">${fmt(p.mrp)}</span>
-                <span class="product-off">${off}% off</span>
-            </div>
-            <p class="product-desc">${p.desc} Crafted with clinically-tested ingredients and sustainably sourced botanicals. Free from parabens, sulfates and synthetic fragrance.</p>
-            <div><b style="font-size:13px">Shade:</b></div>
-            <div class="shade-row" id="shadeRow">
-                ${shades.map((c, i) => `<div class="shade ${i === 0 ? 'active' : ''}" style="background:${c}" data-shade></div>`).join('')}
-            </div>
-            <div style="display:flex;gap:10px;margin-top:18px">
-                <button class="btn btn-solid" style="flex:1" data-qv-add="${p.id}"><i class="fa-solid fa-bag-shopping"></i> Add to Bag</button>
-                <button class="btn btn-ghost" data-qv-wish="${p.id}" aria-label="Wishlist"><i class="fa${inWish ? 's' : 'r'} fa-heart"></i></button>
-            </div>
-            <div style="margin-top:18px;font-size:12px;color:var(--text-muted);display:flex;gap:14px;flex-wrap:wrap">
-                <span><i class="fa-solid fa-truck-fast"></i> Free shipping</span>
-                <span><i class="fa-solid fa-rotate-left"></i> 30-day returns</span>
-                <span><i class="fa-solid fa-shield-halved"></i> Authentic</span>
+            <div class="qv-info">
+                <div class="product-brand">${p.brand}</div>
+                <h2 class="product-name">${p.name}</h2>
+                <div class="product-rating">
+                    <span class="stars">${starStr(p.rating)}</span>
+                    <span class="count">${p.rating} · ${p.reviews} reviews</span>
+                </div>
+                <div class="product-price-row" style="margin:12px 0 8px">
+                    <span class="product-price">${fmt(p.price)}</span>
+                    <span class="product-strike">${fmt(p.mrp)}</span>
+                    <span class="product-off">${off}% off</span>
+                </div>
+                <p class="product-desc">${p.desc} Crafted with clinically-tested ingredients and sustainably sourced botanicals. Free from parabens, sulfates and synthetic fragrance.</p>
+                <div><b style="font-size:13px">Shade:</b></div>
+                <div class="shade-row" id="shadeRow">
+                    ${shades.map((c, i) => `<div class="shade ${i === 0 ? 'active' : ''}" style="background:${c}" data-shade></div>`).join('')}
+                </div>
+                <div style="display:flex;gap:10px;margin-top:18px">
+                    <button class="btn btn-solid" style="flex:1" data-qv-add="${p.id}"><i class="fa-solid fa-bag-shopping"></i> Add to Bag</button>
+                    <button class="btn btn-ghost" data-qv-wish="${p.id}" aria-label="Wishlist"><i class="fa${inWish ? 's' : 'r'} fa-heart"></i></button>
+                </div>
+                <div style="margin-top:18px;font-size:12px;color:var(--text-muted);display:flex;gap:14px;flex-wrap:wrap">
+                    <span><i class="fa-solid fa-truck-fast"></i> Free shipping</span>
+                    <span><i class="fa-solid fa-rotate-left"></i> 30-day returns</span>
+                    <span><i class="fa-solid fa-shield-halved"></i> Authentic</span>
+                </div>
             </div>
         </div>`;
     $('#quickView').classList.add('active');
+    // Apply progressive placeholder -> high-res swap for the modal image
+    try { progressiveImages(); } catch (e) { /* ignore if progressiveImages not available */ }
     document.body.style.overflow = 'hidden';
 }
 function closeQuickView() {
