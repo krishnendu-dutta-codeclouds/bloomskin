@@ -740,7 +740,7 @@ ul { list-style: none; }
     width: 100%;
     overflow: hidden;
 }
-.brand-swiper .swiper-slide {
+.brand-track .brand-item {
     width: auto;
 }
 /* Brand track used by GSAP continuous marquee */
@@ -750,7 +750,7 @@ ul { list-style: none; }
     background: #fff;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 30px 20px;
+    padding: 30px 50px;
     text-align: center;
     font-family: 'Playfair Display', serif;
     font-size: 18px;

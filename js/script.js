@@ -122,7 +122,8 @@ function initBrandSwiper() {
     }
 
     // Build a continuous marquee using GSAP by duplicating slides for seamless loop
-    const originalItems = Array.from(container.querySelectorAll('.swiper-slide'));
+    // select existing brand items (new markup uses .brand-item)
+    const originalItems = Array.from(container.querySelectorAll('.brand-item, .swiper-slide'));
     if (originalItems.length <= 1) {
         // nothing to animate, keep static layout
         return;
@@ -133,7 +134,7 @@ function initBrandSwiper() {
     if (!track) {
         track = document.createElement('div');
         track.className = 'brand-track';
-        // move existing slides into track
+        // move existing items into track
         originalItems.forEach(i => track.appendChild(i));
         container.appendChild(track);
     }
