@@ -798,6 +798,7 @@ ul { list-style: none; }
 
 /* =========================== Consultation =========================== */
 .consultation { padding: 80px 0; background: var(--bg-cream); }
+.consult-wrapper{display: flex; align-items: center; gap:10px}
 .consult-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
 .consult-text h2 { font-size: clamp(28px, 3.2vw, 42px); line-height: 1.15; margin-bottom: 16px; }
 .consult-text > p { color: var(--text-muted); font-size: 16px; margin-bottom: 24px; max-width: 480px; }
@@ -810,7 +811,7 @@ ul { list-style: none; }
     padding: 32px;
     box-shadow: var(--shadow-md);
 }
-.consult-avatar { width: 72px; height: 72px; border-radius: 50%; overflow: hidden; margin-bottom: 14px; border: 3px solid var(--primary); }
+.consult-avatar { width: 72px; height: 72px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary); }
 .consult-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .consult-card b { display: block; font-size: 17px; margin-bottom: 2px; }
 .rating { color: var(--warning); font-size: 13px; }
