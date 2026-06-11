@@ -177,7 +177,7 @@ ul { list-style: none; }
     left: 0;
     right: 0;
     width: 100%;
-    transform: translateY(-100%);
+    transform: translateY(-5%);
     background: #fff;
     border-radius: 0;
     box-shadow: inset 0 1px 0 var(--border), 0 20px 60px rgba(0,0,0,0.15);
