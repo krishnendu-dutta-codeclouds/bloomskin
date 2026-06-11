@@ -257,6 +257,8 @@ function renderProducts() {
             </div>
         </article>`;
     }).join('');
+    // Apply progressive image loading to newly rendered product images
+    progressiveImages();
 }
 
 /* =========================== Tabs & Sort =========================== */
@@ -483,6 +485,38 @@ function openQuickView(id) {
     const inWish = state.wishlist.includes(p.id);
     const shades = ['#e85a8a', '#c84777', '#1a1a1a', '#d4af7a', '#2dbe7c', '#6b4f3a'];
     $('#quickViewBody').innerHTML = `
+
+    /* =========================== Progressive Image Loading =========================== */
+    function progressiveImages() {
+        const placeholder = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="100%" height="100%" fill="%23f5f3f6"/></svg>';
+        const imgs = Array.from(document.querySelectorAll('img:not([data-ignore-progressive])'));
+        imgs.forEach(img => {
+            // already handled
+            if (img.dataset.progressive === 'done') return;
+            // store original source
+            if (!img.dataset.src) img.dataset.src = img.src || '';
+            // skip if no real src
+            if (!img.dataset.src) return;
+            // set placeholder only if not already placeholder
+            if (img.src && !img.dataset.placeholderApplied) {
+                img.dataset.placeholderApplied = '1';
+                img.src = placeholder;
+                img.classList.add('progressive', 'img-placeholder');
+            }
+            // load high-res
+            const hi = new Image();
+            hi.src = img.dataset.src;
+            hi.onload = () => {
+                img.src = hi.src;
+                img.classList.remove('img-placeholder');
+                img.classList.add('loaded');
+                // remove blur after small delay so transition is visible
+                setTimeout(() => { img.classList.remove('progressive'); img.dataset.progressive = 'done'; }, 60);
+            };
+            hi.onerror = () => { img.dataset.progressive = 'error'; };
+        });
+    }
+
         <img src="${p.img}" alt="${p.name}">
         <div>
             <div class="product-brand">${p.brand}</div>

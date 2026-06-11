@@ -948,6 +948,21 @@ ul { list-style: none; }
 /* When site is ready, fade in content gently */
 body.site-ready .header, body.site-ready main, body.site-ready footer { opacity: 0; transform: translateY(8px); }
 
+/* =========================== Progressive Image Placeholder =========================== */
+.progressive {
+    filter: blur(10px) saturate(0.98);
+    transform: scale(1.02);
+    transition: filter 480ms ease, transform 480ms ease, opacity 480ms ease;
+    will-change: filter, transform;
+}
+.progressive.loaded {
+    filter: none;
+    transform: none;
+}
+.img-placeholder {
+    background: linear-gradient(90deg,#f5f3f6 25%, #eee 50%, #f5f3f6 75%);
+}
+
 
 /* =========================== Newsletter =========================== */
 .newsletter {
