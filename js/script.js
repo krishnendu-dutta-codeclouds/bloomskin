@@ -1069,14 +1069,42 @@ function initConsultPicker() {
     if (inlineMode) {
         // render immediately for inline picker
         renderMonth(current);
-        renderTimeSlots(new Date());
-        confirmBtn.disabled = true;
+        // pre-select today if available
+        const today = new Date();
+        if (today.getFullYear() === current.getFullYear() && today.getMonth() === current.getMonth()) {
+            // mark today's day after rendering
+            setTimeout(() => {
+                const days = popup.querySelectorAll('.calendar-day');
+                days.forEach(d => {
+                    if (d.classList.contains('inactive')) return;
+                    if (parseInt(d.textContent, 10) === today.getDate()) {
+                        d.classList.add('selected');
+                        selectedDate = new Date(current.getFullYear(), current.getMonth(), today.getDate());
+                    }
+                });
+                renderTimeSlots(selectedDate || new Date());
+                if (confirmBtn) confirmBtn.disabled = true;
+            }, 10);
+        } else {
+            renderTimeSlots(new Date());
+            if (confirmBtn) confirmBtn.disabled = true;
+        }
     }
 
-    if (closeBtn && !inlineMode) {
-        closeBtn.addEventListener('click', () => {
-            popup.setAttribute('aria-hidden', 'true');
-        });
+    if (closeBtn) {
+        if (inlineMode) {
+            // Clear selections for inline picker
+            closeBtn.addEventListener('click', () => {
+                popup.querySelectorAll('.calendar-day').forEach(c => c.classList.remove('selected'));
+                popup.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+                selectedDate = null; selectedTime = null;
+                if (confirmBtn) confirmBtn.disabled = true;
+            });
+        } else {
+            closeBtn.addEventListener('click', () => {
+                popup.setAttribute('aria-hidden', 'true');
+            });
+        }
     }
 
     popup.querySelector('.cal-prev')?.addEventListener('click', () => {
