@@ -186,7 +186,7 @@ function initBrandSwiper() {
     // reset track content to single pass initially
     track.innerHTML = firstPassHTML;
     // reset any previous transform
-    track.style.transform = 'translateX(0px)';
+    track.style.transform = 'translateX(0px)'; 
 
     // If on small screens, do not auto-marquee — allow horizontal scroll (touch) instead
     const smallScreen = window.innerWidth <= 900;
