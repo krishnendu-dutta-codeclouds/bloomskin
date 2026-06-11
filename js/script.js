@@ -197,20 +197,68 @@ function initBrandSwiper() {
     // reset any previous transform
     track.style.transform = 'translateX(0px)'; 
 
-    // If on small screens, do not auto-marquee — allow horizontal scroll (touch) instead
+    // If on small screens, enable autoplay marquee but allow users to pause with touch and resume after inactivity
     const smallScreen = window.innerWidth <= 900;
     if (smallScreen) {
-        // stop any existing tween
+        // kill any previous tween
         if (brandGsapTween) { try { brandGsapTween.kill(); } catch (e) {} brandGsapTween = null; }
-        container.style.overflowX = 'auto';
+        container.style.overflowX = 'hidden';
         container.style.overflowY = 'hidden';
-        container.style.webkitOverflowScrolling = 'touch';
         track.style.display = 'flex';
         track.style.gap = track.style.gap || '16px';
-        // ensure single pass content only and reset scroll
-        track.innerHTML = firstPassHTML;
-        try { container.scrollLeft = 0; track.scrollLeft = 0; } catch (e) {}
-        track.style.touchAction = 'pan-x';
+        // Use duplicated content for seamless autoplay on mobile too
+        track.innerHTML = firstPassHTML + firstPassHTML;
+
+        // Remove old handlers if any
+        const removeHandlers = () => {
+            const oldPointer = container._brandPointerHandler;
+            const oldUp = container._brandPointerUp;
+            if (oldPointer) container.removeEventListener('pointerdown', oldPointer);
+            if (oldUp) container.removeEventListener('pointerup', oldUp);
+            if (container._brandResumeTimer) { clearTimeout(container._brandResumeTimer); container._brandResumeTimer = null; }
+            container._brandPointerHandler = null;
+            container._brandPointerUp = null;
+        };
+        removeHandlers();
+
+        // Measure and start tween for mobile after layout settles
+        setTimeout(() => {
+            const fullWidth = track.scrollWidth / 2;
+            if (!fullWidth || fullWidth <= 0) return;
+            if (typeof gsap !== 'undefined') {
+                brandGsapTween = gsap.to(track, {
+                    x: -fullWidth,
+                    duration: Math.max(10, fullWidth / 90),
+                    ease: 'linear',
+                    repeat: -1
+                });
+            }
+
+            // Pause on user touch/drag and convert to native horizontal scroll while pressed
+            const pointerDown = (e) => {
+                if (brandGsapTween && brandGsapTween.isActive()) brandGsapTween.pause();
+                // allow native scrolling while pointer held
+                container.style.overflowX = 'auto';
+                // clear any pending resume
+                if (container._brandResumeTimer) { clearTimeout(container._brandResumeTimer); container._brandResumeTimer = null; }
+            };
+
+            const pointerUp = (e) => {
+                // after short delay, hide overflow and resume autoplay
+                if (container._brandResumeTimer) clearTimeout(container._brandResumeTimer);
+                container._brandResumeTimer = setTimeout(() => {
+                    try { container.style.overflowX = 'hidden'; } catch (err) {}
+                    if (brandGsapTween) brandGsapTween.play();
+                    container._brandResumeTimer = null;
+                }, 1200);
+            };
+
+            container.addEventListener('pointerdown', pointerDown, { passive: true });
+            container.addEventListener('pointerup', pointerUp, { passive: true });
+            container._brandPointerHandler = pointerDown;
+            container._brandPointerUp = pointerUp;
+        }, 60);
+
         return;
     } else {
         // Desktop: hide overflow and run marquee
