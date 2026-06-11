@@ -982,11 +982,12 @@ window.addEventListener('load', () => {
 
 /* =========================== Consultation Picker =========================== */
 function initConsultPicker() {
-    const openBtn = document.getElementById('openConsultPicker');
     const popup = document.getElementById('consultPicker');
+    if (!popup) return;
+    const openBtn = document.getElementById('openConsultPicker');
     const closeBtn = document.getElementById('closeConsultPicker');
     const confirmBtn = document.getElementById('confirmConsult');
-    if (!popup || !openBtn) return;
+    const inlineMode = !openBtn;
 
     let current = new Date();
     let selectedDate = null;
@@ -1055,17 +1056,28 @@ function initConsultPicker() {
         });
     }
 
-    openBtn.addEventListener('click', () => {
-        popup.setAttribute('aria-hidden', 'false');
-        // render current month and today's times
+    if (openBtn) {
+        openBtn.addEventListener('click', () => {
+            popup.setAttribute('aria-hidden', 'false');
+            // render current month and today's times
+            renderMonth(current);
+            renderTimeSlots(new Date());
+            confirmBtn.disabled = true;
+        });
+    }
+
+    if (inlineMode) {
+        // render immediately for inline picker
         renderMonth(current);
         renderTimeSlots(new Date());
         confirmBtn.disabled = true;
-    });
+    }
 
-    closeBtn?.addEventListener('click', () => {
-        popup.setAttribute('aria-hidden', 'true');
-    });
+    if (closeBtn && !inlineMode) {
+        closeBtn.addEventListener('click', () => {
+            popup.setAttribute('aria-hidden', 'true');
+        });
+    }
 
     popup.querySelector('.cal-prev')?.addEventListener('click', () => {
         current = new Date(current.getFullYear(), current.getMonth() - 1, 1);
@@ -1088,11 +1100,13 @@ function initConsultPicker() {
             container.prepend(newSlot);
         }
         toast(`Consultation booked: ${selectedDate.toLocaleDateString()} ${selectedTime}`);
-        popup.setAttribute('aria-hidden', 'true');
+        if (!inlineMode) popup.setAttribute('aria-hidden', 'true');
     });
 
     // close on Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') popup.setAttribute('aria-hidden', 'true');
-    });
+    if (!inlineMode) {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') popup.setAttribute('aria-hidden', 'true');
+        });
+    }
 }

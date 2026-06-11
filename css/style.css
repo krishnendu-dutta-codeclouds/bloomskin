@@ -866,6 +866,24 @@ ul { list-style: none; }
     .consult-picker { flex-direction:column; }
 }
 
+/* Inline picker variant (inside consult-card) */
+.consult-picker-inline {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    min-width: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    display: block;
+    margin-top: 12px;
+}
+.consult-picker-inline .consult-picker { gap: 10px; }
+.consult-picker-inline .calendar { width: 160px; }
+.consult-picker-inline .calendar-days { gap:4px; }
+
 /* =========================== Testimonials =========================== */
 .testimonial-swiper {
     width: 100%;
