@@ -1299,7 +1299,7 @@ body.site-ready footer {
     font-size: 11px;
     font-weight: 500;
     position: relative;
-}
+} 
 .bn-item i { font-size: 18px; }
 .bn-item.active { color: var(--primary); }
 .bn-item .badge {
