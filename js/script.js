@@ -851,7 +851,7 @@ $$('.nav-item > a').forEach(a => {
         }
     });
 });
-
+ 
 // Close mobile menu when a non-mega link is clicked
 $$('.nav-item').forEach(item => {
     item.addEventListener('click', e => {
