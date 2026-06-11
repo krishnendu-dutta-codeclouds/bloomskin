@@ -97,14 +97,19 @@ const heroSwiper = new Swiper('.hero-swiper', {
 });
 
 /* =========================== Brand Carousel =========================== */
-(() => {
-    const brandSlides = document.querySelectorAll('.brand-swiper .swiper-slide').length;
-    const brandLoop = brandSlides > 1;
-    const brandSwiper = new Swiper('.brand-swiper', {
+let brandSwiperInstance = null;
+function initBrandSwiper() {
+    const slides = document.querySelectorAll('.brand-swiper .swiper-slide').length;
+    const loop = slides > 1;
+    if (brandSwiperInstance) {
+        try { brandSwiperInstance.destroy(true, true); } catch (e) {}
+        brandSwiperInstance = null;
+    }
+    brandSwiperInstance = new Swiper('.brand-swiper', {
         slidesPerView: 'auto',
         spaceBetween: 16,
-        loop: brandLoop,
-        autoplay: brandLoop ? { delay: 0, disableOnInteraction: false } : false,
+        loop: loop,
+        autoplay: loop ? { delay: 0, disableOnInteraction: false } : false,
         speed: 3000,
         breakpoints: {
             1100: { slidesPerView: 6 },
@@ -113,37 +118,41 @@ const heroSwiper = new Swiper('.hero-swiper', {
             380: { slidesPerView: 3 }
         }
     });
-})();
+}
+initBrandSwiper();
 
 /* =========================== Testimonials Carousel =========================== */
-(() => {
-    const tContainer = document.querySelector('.testimonial-swiper');
-    const tSlides = tContainer ? tContainer.querySelectorAll('.swiper-slide').length : 0;
-    const currentSlidesPerView = window.innerWidth >= 900 ? 3 : 1;
-    const testimonialLoop = tSlides > currentSlidesPerView;
-    const testimonialSwiper = new Swiper('.testimonial-swiper', {
+let testimonialSwiperInstance = null;
+function initTestimonialSwiper() {
+    const container = document.querySelector('.testimonial-swiper');
+    const slides = container ? container.querySelectorAll('.swiper-slide').length : 0;
+    const targetSlidesPerView = window.innerWidth >= 900 ? 3 : 1;
+    const loop = slides > targetSlidesPerView;
+    if (testimonialSwiperInstance) {
+        try { testimonialSwiperInstance.destroy(true, true); } catch (e) {}
+        testimonialSwiperInstance = null;
+    }
+    testimonialSwiperInstance = new Swiper('.testimonial-swiper', {
         slidesPerView: 1,
         spaceBetween: 24,
-        loop: testimonialLoop,
+        loop: loop,
         pagination: { el: '.testimonial-swiper ~ .swiper-pagination', clickable: true },
         breakpoints: {
             900: { slidesPerView: 3 }
         }
     });
+}
+initTestimonialSwiper();
 
-    // Re-evaluate on resize: if breakpoint changes and loop becomes valid/invalid, re-init
-    let lastBreakpoint = window.innerWidth >= 900 ? 'lg' : 'sm';
-    window.addEventListener('resize', () => {
-        const bp = window.innerWidth >= 900 ? 'lg' : 'sm';
-        if (bp !== lastBreakpoint) {
-            lastBreakpoint = bp;
-            // simple approach: reload page to re-init Swiper correctly
-            // or we could destroy and recreate; reload is simplest and safe
-            try { testimonialSwiper.destroy(true, true); } catch(e){}
-            setTimeout(() => location.reload(), 50);
-        }
-    });
-})();
+// Debounced resize to re-init swipers when layout breakpoints change
+let _resizeTimer = null;
+window.addEventListener('resize', () => {
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(() => {
+        initBrandSwiper();
+        initTestimonialSwiper();
+    }, 200);
+});
 
 /* =========================== Product Rendering =========================== */
 function getSortedFiltered() {
