@@ -1118,13 +1118,10 @@ function initConsultPicker() {
 
     confirmBtn?.addEventListener('click', () => {
         if (!selectedDate || !selectedTime) return;
-        const container = document.querySelector('.consult-card .slots');
-        if (container) {
-            // update placeholder with selected appointment
-            const sel = document.getElementById('consultSelected');
-            const label = selectedDate.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
-            if (sel) sel.textContent = `${label} • ${selectedTime}`;
-        }
+        // update placeholder with selected appointment (always update whether old slots exist or not)
+        const sel = document.getElementById('consultSelected');
+        const label = selectedDate.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+        if (sel) sel.textContent = `${label} • ${selectedTime}`;
         toast(`Consultation booked: ${selectedDate.toLocaleDateString()} ${selectedTime}`);
         if (!inlineMode) popup.setAttribute('aria-hidden', 'true');
     });
