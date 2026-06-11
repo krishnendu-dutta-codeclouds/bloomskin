@@ -96,6 +96,32 @@ const heroSwiper = new Swiper('.hero-swiper', {
     navigation: { nextEl: '.hero-next', prevEl: '.hero-prev' }
 });
 
+/* =========================== Brand Carousel =========================== */
+const brandSwiper = new Swiper('.brand-swiper', {
+    slidesPerView: 'auto',
+    spaceBetween: 16,
+    loop: true,
+    autoplay: { delay: 0, disableOnInteraction: false },
+    speed: 3000,
+    breakpoints: {
+        1100: { slidesPerView: 6 },
+        900: { slidesPerView: 5 },
+        600: { slidesPerView: 4 },
+        380: { slidesPerView: 3 }
+    }
+});
+
+/* =========================== Testimonials Carousel =========================== */
+const testimonialSwiper = new Swiper('.testimonial-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    pagination: { el: '.testimonial-swiper ~ .swiper-pagination', clickable: true },
+    breakpoints: {
+        900: { slidesPerView: 3 }
+    }
+});
+
 /* =========================== Product Rendering =========================== */
 function getSortedFiltered() {
     let list = state.currentFilter === 'all'
