@@ -898,8 +898,10 @@ ul { list-style: none; }
 .qr-code canvas, .qr-code img { width: 100%; height: 100%; border-radius: calc(var(--radius) - 4px); display: block; }
 .qr-logo {
     position: absolute;
+    inset: 30px 0 0 0;
     width: 64px;
     height: 64px;
+    margin: auto;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -913,6 +915,39 @@ ul { list-style: none; }
 }
 .qr-code { position: relative; }
 .app-qr p { margin-top: 16px; font-size: 14px; color: var(--dark); font-weight: 600; }
+
+/* =========================== Site Loader & Skeleton =========================== */
+#siteLoader {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg,#fff,#faf7fb);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#siteLoader[aria-hidden="true"] { display: none; }
+.loader-inner { max-width: 1100px; width: 92%; }
+.loader-spinner {
+    width: 54px; height: 54px; border-radius: 50%; margin: 0 auto 18px; background: conic-gradient(#e85a8a 0 30%, #f5b5d0 30% 60%, #f0e9f2 60% 100%);
+    animation: spin 1.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.skeleton-root { display: grid; gap: 18px; }
+.sk-hero { display:flex; flex-direction:column; gap:10px; }
+.sk-line { height: 18px; border-radius: 8px; background: linear-gradient(90deg,#f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
+.sk-title { width: 50%; height: 28px; border-radius: 10px; }
+.sk-sub { width: 30%; height: 16px; }
+.sk-offer { height: 90px; border-radius: 12px; background: linear-gradient(90deg,#f7eef6 25%, #f3dfec 50%, #f7eef6 75%); animation: shimmer 1.8s linear infinite; }
+.sk-products { display:flex; gap:14px; margin-top:6px; }
+.sk-card { flex:1; height:140px; border-radius:12px; background: linear-gradient(90deg,#f6f6f6 25%, #eee 50%, #f6f6f6 75%); animation: shimmer 1.6s linear infinite; }
+.sk-brands { height:56px; border-radius:10px; background: linear-gradient(90deg,#f6f0f4 25%, #f1dce7 50%, #f6f0f4 75%); animation: shimmer 1.6s linear infinite; }
+.sk-testimonials { height:120px; border-radius:10px; background: linear-gradient(90deg,#f8f8f8 25%, #eee 50%, #f8f8f8 75%); animation: shimmer 1.6s linear infinite; }
+@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+
+/* When site is ready, fade in content gently */
+body.site-ready .header, body.site-ready main, body.site-ready footer { opacity: 0; transform: translateY(8px); }
+
 
 /* =========================== Newsletter =========================== */
 .newsletter {

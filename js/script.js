@@ -86,15 +86,22 @@ document.addEventListener('error', (e) => {
     }
 }, true);
 
-/* =========================== Hero Carousel =========================== */
-const heroSwiper = new Swiper('.hero-swiper', {
-    loop: true,
-    autoplay: { delay: 5500, disableOnInteraction: false },
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
-    pagination: { el: '.hero-pagination', clickable: true },
-    navigation: { nextEl: '.hero-next', prevEl: '.hero-prev' }
-});
+/* =========================== Hero Carousel (deferred) =========================== */
+let heroSwiperInstance = null;
+function initHeroSwiper() {
+    if (heroSwiperInstance) {
+        try { heroSwiperInstance.destroy(true, true); } catch (e) {}
+        heroSwiperInstance = null;
+    }
+    heroSwiperInstance = new Swiper('.hero-swiper', {
+        loop: true,
+        autoplay: { delay: 5500, disableOnInteraction: false },
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        pagination: { el: '.hero-pagination', clickable: true },
+        navigation: { nextEl: '.hero-next', prevEl: '.hero-prev' }
+    });
+}
 
 /* =========================== Brand Carousel =========================== */
 let brandSwiperInstance = null;
@@ -738,9 +745,36 @@ function reveal() {
 
 /* =========================== Init =========================== */
 document.addEventListener('DOMContentLoaded', () => {
+    // Render initial content quickly so skeleton can be replaced
     renderProducts();
     updateCartUI();
     updateWishlistUI();
     startCountdown();
-    reveal();
+    // keep reveal deferred until after full load for smoother entrance
+    // show skeleton loader (already present in DOM)
+});
+
+// Orchestrate what happens once all resources are loaded
+window.addEventListener('load', () => {
+    const loader = document.getElementById('siteLoader');
+    const body = document.body;
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+    // Fade out spinner, then the loader overlay
+    tl.to('.loader-spinner', { rotation: 360, duration: 0.6, repeat: 1 })
+      .to(loader, { y: -40, opacity: 0, duration: 0.6, onComplete() {
+          loader.setAttribute('aria-hidden', 'true');
+      }}, '>-0.2')
+      .add(() => {
+          body.classList.add('site-ready');
+      });
+
+    // Initialize interactive pieces after the loader is hidden
+    tl.add(() => {
+        initAppQR();
+        initBrandSwiper();
+        initTestimonialSwiper();
+        initHeroSwiper();
+        reveal();
+    }, '>-0.1');
+});
 });
