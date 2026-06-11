@@ -1119,6 +1119,8 @@ body.site-ready footer {
     align-items: center;
     justify-content: center;
 }
+.qty button svg { width: 12px; height: 12px; display: block; fill: currentColor; }
+.qty button { background: transparent; border: none; }
 .qty button:hover { background: #fff; }
 .qty button:disabled { opacity: 0.4; cursor: not-allowed; }
 .qty span { padding: 0 10px; font-size: 13px; font-weight: 600; min-width: 24px; text-align: center; }

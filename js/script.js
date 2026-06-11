@@ -529,9 +529,13 @@ function renderCartItems() {
                 <b>${p.name}</b>
                 <span>${p.brand}</span>
                 <div class="qty">
-                    <button data-qty="${p.id}" data-delta="-1" aria-label="Decrease">−</button>
+                    <button data-qty="${p.id}" data-delta="-1" aria-label="Decrease">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="11" width="16" height="2" fill="currentColor" rx="1"/></svg>
+                    </button>
                     <span>${i.qty}</span>
-                    <button data-qty="${p.id}" data-delta="1" aria-label="Increase">+</button>
+                    <button data-qty="${p.id}" data-delta="1" aria-label="Increase">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="11" y="4" width="2" height="16" fill="currentColor" rx="1"/><rect x="4" y="11" width="16" height="2" fill="currentColor" rx="1"/></svg>
+                    </button>
                 </div>
             </div>
             <div class="cart-item-side">
