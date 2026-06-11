@@ -1394,7 +1394,7 @@ body.site-ready footer {
         pointer-events: auto;
         gap: 16px;
     }
-    .nav-item.open .mega-menu { display: grid; padding: 20px 25px; }
+    .nav-item.open .mega-menu { display: grid; padding: 20px 25px; grid-template-columns: 1fr; width:100%}
     .mega-feature { display: none; }
     .nav-item > a i { transition: var(--transition); }
     .nav-item.open > a i { transform: rotate(180deg); }

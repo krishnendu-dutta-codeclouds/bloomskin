@@ -53,6 +53,43 @@ const bumpBadge = (el) => {
     el.classList.add('bump');
 };
 
+/* =========================== Progressive Image Loading =========================== */
+function progressiveImages(scope = document) {
+    const placeholder = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="100%" height="100%" fill="%23f5f3f6"/></svg>';
+    const imgs = Array.from(scope.querySelectorAll('img:not([data-ignore-progressive])'));
+    imgs.forEach(img => {
+        try {
+            if (img.dataset.progressive === 'done') return;
+            // store original source
+            if (!img.dataset.src) img.dataset.src = img.src || '';
+            // if no real src (empty or already placeholder), skip
+            if (!img.dataset.src || img.dataset.src.startsWith('data:')) return;
+            // if image is already loaded (from cache), mark done
+            if (img.complete && img.naturalWidth) {
+                img.dataset.progressive = 'done';
+                img.classList.add('loaded');
+                return;
+            }
+            // apply placeholder only once
+            if (!img.dataset.placeholderApplied) {
+                img.dataset.placeholderApplied = '1';
+                img.classList.add('progressive', 'img-placeholder');
+                img.src = placeholder;
+            }
+            // load high-res
+            const hi = new Image();
+            hi.src = img.dataset.src;
+            hi.onload = () => {
+                img.src = hi.src;
+                img.classList.remove('img-placeholder');
+                img.classList.add('loaded');
+                setTimeout(() => { img.classList.remove('progressive'); img.dataset.progressive = 'done'; }, 60);
+            };
+            hi.onerror = () => { img.dataset.progressive = 'error'; };
+        } catch (e) { /* silent */ }
+    });
+}
+
 /* ----- Lenis Smooth Scroll ----- */
 const lenis = new Lenis({
     duration: 1.2,
