@@ -145,7 +145,7 @@ function initBrandSwiper() {
 
     // Duplicate content for seamless scrolling
     const firstPassHTML = track.innerHTML;
-    track.innerHTML = firstPassHTML + firstPassHTML;
+    track.innerHTML = firstPassHTML + firstPassHTML; 
 
     // Allow layout to settle then measure
     setTimeout(() => {

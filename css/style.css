@@ -758,7 +758,7 @@ ul { list-style: none; }
     letter-spacing: 2px;
     transition: var(--transition);
     color: var(--text);
-    display: block;
+    display: block; 
 }
 .brand-card:hover { background: var(--dark); color: #fff; border-color: var(--dark); transform: translateY(-4px); }
 
