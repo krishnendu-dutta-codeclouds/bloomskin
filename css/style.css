@@ -1243,7 +1243,7 @@ body.site-ready footer {
 /* Focus styles for modal close for keyboard users */
 .modal-close:focus { outline: 3px solid var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 
-/* =========================== Toast =========================== */
+/* =========================== Toast =========================== */ 
 .toast {
     position: fixed;
     bottom: 24px;

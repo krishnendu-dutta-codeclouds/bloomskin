@@ -486,7 +486,7 @@ function enableModalScroll(el) {
     el.__modalWheel = wheel;
     el.__modalTouch = touch;
     el.addEventListener('wheel', wheel, { passive: false });
-    el.addEventListener('touchmove', touch, { passive: false });
+    el.addEventListener('touchmove', touch, { passive: false }); 
 }
 function disableModalScroll(el) {
     if (!el) return;
