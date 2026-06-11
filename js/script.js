@@ -1120,12 +1120,10 @@ function initConsultPicker() {
         if (!selectedDate || !selectedTime) return;
         const container = document.querySelector('.consult-card .slots');
         if (container) {
-            container.querySelectorAll('.slot').forEach(s => s.classList.remove('active'));
-            const label = selectedDate.toLocaleDateString(undefined, { weekday: 'short' });
-            const newSlot = document.createElement('div');
-            newSlot.className = 'slot active';
-            newSlot.innerHTML = `<span>${label}</span><b>${selectedTime}</b>`;
-            container.prepend(newSlot);
+            // update placeholder with selected appointment
+            const sel = document.getElementById('consultSelected');
+            const label = selectedDate.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+            if (sel) sel.textContent = `${label} • ${selectedTime}`;
         }
         toast(`Consultation booked: ${selectedDate.toLocaleDateString()} ${selectedTime}`);
         if (!inlineMode) popup.setAttribute('aria-hidden', 'true');

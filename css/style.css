@@ -829,6 +829,14 @@ ul { list-style: none; }
 .slot span { display: block; font-size: 11px; opacity: 0.8; }
 .slot b { font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; }
 
+.consult-selected {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: var(--bg-soft);
+    border-radius: 10px;
+    font-size: 14px;
+}
+
 /* Consult picker popup */
 .consult-picker-popup {
     position: absolute;
@@ -846,7 +854,7 @@ ul { list-style: none; }
 }
 .consult-picker-popup[aria-hidden="false"] { display: block; }
 .consult-picker { display:flex; gap:12px; align-items:flex-start; }
-.calendar { width: 200px; padding: 4px; box-sizing: border-box; }
+.calendar { padding: 4px; box-sizing: border-box; }
 .calendar-header { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
 .cal-prev, .cal-next {
     background: transparent;
@@ -893,7 +901,7 @@ ul { list-style: none; }
     margin-top: 12px;
 }
 .consult-picker-inline .consult-picker { gap: 10px; }
-.consult-picker-inline .calendar { width: 160px; }
+/* .consult-picker-inline .calendar { width: 160px; } */
 .consult-picker-inline .calendar-days { gap:4px; }
 
 /* =========================== Testimonials =========================== */
