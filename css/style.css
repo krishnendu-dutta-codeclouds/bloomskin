@@ -1290,7 +1290,7 @@ body.site-ready footer {
     grid-template-columns: repeat(5, 1fr);
     max-width: var(--container);
     margin: 0 auto;
-}
+} 
 .bn-item {
     display: flex;
     flex-direction: column;

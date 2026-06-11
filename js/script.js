@@ -175,7 +175,7 @@ function initBrandSwiper() {
         originalItems.forEach(i => track.appendChild(i));
         container.appendChild(track);
     }
- 
+  
     // Ensure items are display:flex and no wrapping
     track.style.display = 'flex';
     track.style.flexWrap = 'nowrap';
