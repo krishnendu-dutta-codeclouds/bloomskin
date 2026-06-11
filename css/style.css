@@ -33,33 +33,7 @@
 /* Lenis handles smooth scrolling */
 html { scroll-behavior: auto; }
 
-/* =========================== Custom Scrollbar =========================== */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-::-webkit-scrollbar-track {
-    background: var(--bg-soft);
-}
-::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 4px;
-    border: 2px solid var(--bg-soft);
-    transition: var(--transition);
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
-    border: 2px solid var(--bg-soft);
-}
-::-webkit-scrollbar-corner {
-    background: var(--bg-soft);
-}
-
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) var(--bg-soft);
-}
+/* Default native scrollbars: no custom styling to preserve platform look */
 
 body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
