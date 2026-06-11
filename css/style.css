@@ -405,7 +405,7 @@ ul { list-style: none; }
 
 /* =========================== Hero =========================== */
 .hero-section {
-    padding: 24px 24px 0;
+    padding: 24px;
     background: var(--bg-soft);
 }
 .hero-swiper {
@@ -550,7 +550,7 @@ ul { list-style: none; }
 .category-card span { font-size: 13px; font-weight: 600; color: var(--text); }
 
 /* =========================== Offers Banner =========================== */
-.offers-banner { padding: 40px 0; }
+.offers-banner { padding: 40px 16px; }
 .offer-card {
     background: linear-gradient(120deg, #1a1a1a 0%, #2a1f2a 100%);
     color: #fff;
@@ -920,7 +920,7 @@ ul { list-style: none; }
 #siteLoader {
     position: fixed;
     inset: 0;
-    background: rgba(255,255,255,0.92);
+    background: rgba(255,255,255,1);
     z-index: 99999;
     display: flex;
     align-items: center;
@@ -1175,24 +1175,27 @@ body.site-ready footer {
 .modal.active { display: flex; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .modal-dialog {
-    background: #fff;
+    background: var(--bg);
+    color: var(--text);
     border-radius: var(--radius-lg);
     max-width: 900px;
     width: 100%;
-    max-height: 90vh;
-    max-height: 90dvh;
+    max-height: min(90vh, 90dvh);
     overflow-y: auto;
     position: relative;
-    animation: scaleIn 0.3s ease;
+    animation: scaleIn 0.28s cubic-bezier(.22,.9,.32,1);
+    box-shadow: var(--shadow-lg);
 }
 @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .modal-close {
     position: absolute;
-    top: 16px; right: 16px;
-    z-index: 5;
-    background: rgba(255,255,255,0.95);
+    top: 12px; right: 12px;
+    z-index: 6;
+    background: rgba(255,255,255,0.9);
+    width: 40px; height: 40px; display:flex; align-items:center; justify-content:center; border-radius:50%;
+    box-shadow: var(--shadow-sm);
 }
-.modal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 32px; }
+.modal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 28px; align-items: start; }
 .modal-body img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: var(--radius); }
 .modal-body .product-brand { font-size: 12px; }
 .modal-body .product-name { font-size: 24px; margin: 6px 0 12px; font-family: 'Playfair Display', serif; }
@@ -1222,6 +1225,20 @@ body.site-ready footer {
 .search-modal-results img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
 .search-modal-results b { display: block; font-size: 14px; }
 .search-modal-results .price { font-size: 13px; color: var(--primary); font-weight: 600; }
+
+/* Responsive modal adjustments */
+@media (max-width: 900px) {
+    .modal-dialog { max-width: 680px; }
+    .modal-body { grid-template-columns: 1fr; padding: 18px; gap: 18px; }
+    .modal-close { top: 10px; right: 10px; width: 36px; height: 36px; }
+}
+
+/* Respect dark theme for modal dialog */
+@media (prefers-color-scheme: dark) {
+    .modal { background: rgba(0,0,0,0.7); }
+    .modal-dialog { background: #0b0b0d; color: #f3f3f3; }
+    .modal-close { background: rgba(255,255,255,0.06); }
+}
 
 /* =========================== Toast =========================== */
 .toast {
