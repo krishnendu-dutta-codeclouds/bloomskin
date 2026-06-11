@@ -183,10 +183,28 @@ function initBrandSwiper() {
     // Duplicate content for seamless scrolling. Preserve original HTML to avoid repeated doubling on re-init.
     let firstPassHTML = track.dataset.originalHtml || track.innerHTML;
     if (!track.dataset.originalHtml) track.dataset.originalHtml = firstPassHTML;
-    // reset track content to single pass then duplicate
-    track.innerHTML = firstPassHTML + firstPassHTML;
+    // reset track content to single pass initially
+    track.innerHTML = firstPassHTML;
     // reset any previous transform
     track.style.transform = 'translateX(0px)';
+
+    // If on small screens, do not auto-marquee — allow horizontal scroll (touch) instead
+    const smallScreen = window.innerWidth <= 900;
+    if (smallScreen) {
+        container.style.overflowX = 'auto';
+        container.style.overflowY = 'hidden';
+        track.style.display = 'flex';
+        track.style.gap = track.style.gap || '16px';
+        // ensure single pass content only
+        track.innerHTML = firstPassHTML;
+        return;
+    } else {
+        // Desktop: hide overflow and run marquee
+        container.style.overflowX = 'hidden';
+    }
+
+    // Duplicate for desktop marquee
+    track.innerHTML = firstPassHTML + firstPassHTML;
 
     // Allow layout to settle then measure
     setTimeout(() => {
