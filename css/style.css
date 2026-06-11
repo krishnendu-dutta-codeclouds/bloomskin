@@ -463,7 +463,7 @@ ul { list-style: none; }
     box-shadow: var(--shadow-md);
 }
 .hero-prev::after, .hero-next::after { font-size: 16px; font-weight: 700; }
-.hero-pagination { bottom: 24px !important; }
+.hero-pagination { bottom: 10px !important; }
 .hero-pagination .swiper-pagination-bullet { background: var(--dark); opacity: 0.3; }
 .hero-pagination .swiper-pagination-bullet-active { background: var(--primary); opacity: 1; width: 28px; border-radius: 4px; transition: var(--transition); }
 
@@ -891,7 +891,7 @@ ul { list-style: none; }
 
 @media (max-width:900px) {
     .consult-picker-popup { left: 16px; transform:none; right:16px; min-width: auto; }
-    .consult-picker { flex-direction:column; }
+    
 }
 
 /* Inline picker variant (inside consult-card) */
@@ -1085,7 +1085,7 @@ body.site-ready footer {
 .footer { background: var(--dark); color: #ccc; padding: 80px 0 0; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 40px; padding-bottom: 60px; }
 .footer-col h4 { color: #fff; margin-bottom: 18px; font-size: 15px; font-family: 'Playfair Display', serif; letter-spacing: 1px; }
-.footer-col .logo { color: #fff; font-size: 26px; position:static }
+.footer-col .logo { color: #fff; font-size: 26px; position:static;transform:none }
 .footer-col p { font-size: 14px; line-height: 1.6; margin: 12px 0 20px; }
 .footer-col a { display: block; padding: 6px 0; font-size: 14px; color: #ccc; }
 .footer-col a:hover { color: var(--primary); transform: translateX(4px); }
@@ -1498,7 +1498,7 @@ body.site-ready footer {
     .search-bar { display: none; }
     .mobile-search-btn { display: inline-flex; }
 
-    .hero-section { padding: 16px 16px 0; }
+    .hero-section { padding: 16px 16px 16px; }
     .hero-slide { grid-template-columns: 1fr; padding: 32px 24px; min-height: auto; gap: 24px; }
     .hero-text h1 { font-size: clamp(28px, 7vw, 40px); }
     .hero-text p { font-size: 15px; }
@@ -1537,7 +1537,10 @@ body.site-ready footer {
     .brand-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .brand-card { padding: 20px 12px; font-size: 14px; letter-spacing: 1px; }
 
-    .offer-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
+    .offer-card { display:flex; padding: 36px 28px; gap: 28px;flex-direction:column-reverse }
+    .offer-card .offer-content {
+        width: 100%;
+    }
     .offer-content h2 { font-size: 28px; }
 
     .editorial-grid { grid-template-columns: 1fr 1fr; height: auto; grid-template-rows: auto; }
@@ -1569,10 +1572,14 @@ body.site-ready footer {
     .bottom-nav { display: block; }
     .drawer { width: 100%; }
     .toast { bottom: 24px; }
+    .consult-text {
+        padding: 0 16px;
+    }
+    .hero-prev, .hero-next{display: none;}
 }
 
 @media (max-width: 600px) {
-    .container { padding: 0 16px; }
+    .container { padding: 0 24px; }
     .header-inner { padding: 10px 16px; }
      .logo { left: 60px;z-index: 1000; transform:none }
     .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1597,6 +1604,12 @@ body.site-ready footer {
     .modal-dialog { max-height: min(80vh, 80dvh); margin-top: 60px;}
     .app-banner{text-align: center;}
     .store-row{justify-content: center  ;}
+    .consult-picker { flex-direction:column; }
+    .calendar{width: 100%;}
+    .consultation{padding:40px 0}
+    .footer-col:first-child {
+    grid-column: span 2;
+}
 }
 
 @media (max-width: 380px) {
