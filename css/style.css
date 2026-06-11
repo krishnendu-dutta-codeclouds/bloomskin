@@ -524,7 +524,7 @@ ul { list-style: none; }
 .category-card span { font-size: 13px; font-weight: 600; color: var(--text); }
 
 /* =========================== Offers Banner =========================== */
-.offers-banner { padding: 40px 16px; }
+.offers-banner { padding: 40px 24px; }
 .offer-card {
     background: linear-gradient(120deg, #1a1a1a 0%, #2a1f2a 100%);
     color: #fff;
@@ -708,7 +708,7 @@ ul { list-style: none; }
 .product-info { padding: 16px; flex: 1; display: flex; flex-direction: column; }
 .product-brand { font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: 4px; }
 .product-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
-.product-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.product-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 .product-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; font-size: 12px; }
 .product-rating .stars { color: var(--warning); letter-spacing: 1px; }
 .product-rating .count { color: var(--text-muted); }
@@ -738,10 +738,14 @@ ul { list-style: none; }
 .brand-section { background: var(--bg-soft); }
 .brand-swiper {
     width: 100%;
+    overflow: hidden;
 }
 .brand-swiper .swiper-slide {
     width: auto;
 }
+/* Brand track used by GSAP continuous marquee */
+.brand-track { display: flex; gap: 16px; align-items: center; }
+.brand-track > * { flex: 0 0 auto; }
 .brand-card {
     background: #fff;
     border: 1px solid var(--border);
@@ -839,7 +843,7 @@ ul { list-style: none; }
     transition: var(--transition);
 }
 .testimonial:hover { background: #fff; box-shadow: var(--shadow-md); }
-.stars { color: var(--warning); margin-bottom: 12px; font-size: 16px; letter-spacing: 1px; }
+.stars { color: var(--warning); font-size: 16px; letter-spacing: 1px; }
 .testimonial p { font-size: 15px; line-height: 1.6; margin-bottom: 20px; color: var(--text); }
 .t-user { display: flex; align-items: center; gap: 12px; }
 .t-user img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }

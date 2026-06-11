@@ -105,26 +105,61 @@ function initHeroSwiper() {
 
 /* =========================== Brand Carousel =========================== */
 let brandSwiperInstance = null;
+let brandGsapTween = null;
 function initBrandSwiper() {
-    const slides = document.querySelectorAll('.brand-swiper .swiper-slide').length;
-    const loop = slides > 1;
+    const container = document.querySelector('.brand-swiper');
+    if (!container) return;
+
+    // If a GSAP tween exists, kill it so we can re-init
+    if (brandGsapTween) {
+        try { brandGsapTween.kill(); } catch (e) {}
+        brandGsapTween = null;
+    }
+    // If a Swiper instance exists, destroy it
     if (brandSwiperInstance) {
         try { brandSwiperInstance.destroy(true, true); } catch (e) {}
         brandSwiperInstance = null;
     }
-    brandSwiperInstance = new Swiper('.brand-swiper', {
-        slidesPerView: 'auto',
-        spaceBetween: 16,
-        loop: loop,
-        autoplay: loop ? { delay: 0, disableOnInteraction: false } : false,
-        speed: 3000,
-        breakpoints: {
-            1100: { slidesPerView: 6 },
-            900: { slidesPerView: 5 },
-            600: { slidesPerView: 4 },
-            380: { slidesPerView: 3 }
+
+    // Build a continuous marquee using GSAP by duplicating slides for seamless loop
+    const originalItems = Array.from(container.querySelectorAll('.swiper-slide'));
+    if (originalItems.length <= 1) {
+        // nothing to animate, keep static layout
+        return;
+    }
+
+    // Create or reuse brand-track wrapper
+    let track = container.querySelector('.brand-track');
+    if (!track) {
+        track = document.createElement('div');
+        track.className = 'brand-track';
+        // move existing slides into track
+        originalItems.forEach(i => track.appendChild(i));
+        container.appendChild(track);
+    }
+
+    // Ensure items are display:flex and no wrapping
+    track.style.display = 'flex';
+    track.style.flexWrap = 'nowrap';
+
+    // Duplicate content for seamless scrolling
+    const firstPassHTML = track.innerHTML;
+    track.innerHTML = firstPassHTML + firstPassHTML;
+
+    // Allow layout to settle then measure
+    setTimeout(() => {
+        const fullWidth = track.scrollWidth / 2; // width of the original content
+        if (!fullWidth || fullWidth <= 0) return;
+        // Start GSAP tween: move left by fullWidth continuously
+        if (typeof gsap !== 'undefined') {
+            brandGsapTween = gsap.to(track, {
+                x: -fullWidth,
+                duration: Math.max(12, fullWidth / 80),
+                ease: 'linear',
+                repeat: -1
+            });
         }
-    });
+    }, 50);
 }
 initBrandSwiper();
 
