@@ -180,9 +180,13 @@ function initBrandSwiper() {
     track.style.display = 'flex';
     track.style.flexWrap = 'nowrap';
 
-    // Duplicate content for seamless scrolling
-    const firstPassHTML = track.innerHTML;
-    track.innerHTML = firstPassHTML + firstPassHTML; 
+    // Duplicate content for seamless scrolling. Preserve original HTML to avoid repeated doubling on re-init.
+    let firstPassHTML = track.dataset.originalHtml || track.innerHTML;
+    if (!track.dataset.originalHtml) track.dataset.originalHtml = firstPassHTML;
+    // reset track content to single pass then duplicate
+    track.innerHTML = firstPassHTML + firstPassHTML;
+    // reset any previous transform
+    track.style.transform = 'translateX(0px)';
 
     // Allow layout to settle then measure
     setTimeout(() => {
