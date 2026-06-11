@@ -1280,7 +1280,7 @@ ul { list-style: none; }
         pointer-events: auto;
         gap: 16px;
     }
-    .nav-item.open .mega-menu { display: grid; }
+    .nav-item.open .mega-menu { display: grid; padding: 20px 25px; }
     .mega-feature { display: none; }
     .nav-item > a i { transition: var(--transition); }
     .nav-item.open > a i { transform: rotate(180deg); }
