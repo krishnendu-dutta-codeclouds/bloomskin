@@ -691,11 +691,15 @@ $$('.nav-item > a').forEach(a => {
 $$('.nav-item').forEach(item => {
     item.addEventListener('click', e => {
         if (window.innerWidth > 1100) return;
-        if (e.target.closest('.mega-menu')) return;
         const a = e.target.closest('a');
-        if (a && !a.parentElement.querySelector('.mega-menu')) {
-            $('#mainNav')?.classList.remove('open');
-        }
+        if (!a) return;
+        const parentItem = a.closest('.nav-item');
+        const isTopLevelAnchor = parentItem && a.parentElement === parentItem;
+        const hasMega = parentItem && !!parentItem.querySelector('.mega-menu');
+        // If this is the top-level anchor that toggles the mega-menu, don't close
+        if (isTopLevelAnchor && hasMega) return;
+        // Otherwise close the mobile nav and backdrop
+        closeMobileNav();
     });
 });
 
