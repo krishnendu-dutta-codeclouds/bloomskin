@@ -199,7 +199,6 @@ function initBrandSwiper() {
         }
     }, 50);
 }
-initBrandSwiper();
 
 /* =========================== Testimonials Carousel =========================== */
 let testimonialSwiperInstance = null;
