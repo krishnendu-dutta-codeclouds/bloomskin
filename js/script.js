@@ -180,9 +180,18 @@ function initBrandSwiper() {
     track.style.display = 'flex';
     track.style.flexWrap = 'nowrap';
 
-    // Duplicate content for seamless scrolling. Preserve original HTML to avoid repeated doubling on re-init.
-    let firstPassHTML = track.dataset.originalHtml || track.innerHTML;
-    if (!track.dataset.originalHtml) track.dataset.originalHtml = firstPassHTML;
+    // Determine original (single-pass) HTML. If track already contains duplicated content, extract the original half.
+    let currentHtml = track.dataset.originalHtml || track.innerHTML || '';
+    if (!track.dataset.originalHtml && currentHtml) {
+        // If it looks like two identical halves, take the first half as original
+        const len = currentHtml.length;
+        if (len > 0 && len % 2 === 0) {
+            const half = currentHtml.slice(0, len / 2);
+            if (half === currentHtml.slice(len / 2)) currentHtml = half;
+        }
+        track.dataset.originalHtml = currentHtml;
+    }
+    let firstPassHTML = track.dataset.originalHtml || '';
     // reset track content to single pass initially
     track.innerHTML = firstPassHTML;
     // reset any previous transform
@@ -191,12 +200,17 @@ function initBrandSwiper() {
     // If on small screens, do not auto-marquee — allow horizontal scroll (touch) instead
     const smallScreen = window.innerWidth <= 900;
     if (smallScreen) {
+        // stop any existing tween
+        if (brandGsapTween) { try { brandGsapTween.kill(); } catch (e) {} brandGsapTween = null; }
         container.style.overflowX = 'auto';
         container.style.overflowY = 'hidden';
+        container.style.webkitOverflowScrolling = 'touch';
         track.style.display = 'flex';
         track.style.gap = track.style.gap || '16px';
-        // ensure single pass content only
+        // ensure single pass content only and reset scroll
         track.innerHTML = firstPassHTML;
+        try { container.scrollLeft = 0; track.scrollLeft = 0; } catch (e) {}
+        track.style.touchAction = 'pan-x';
         return;
     } else {
         // Desktop: hide overflow and run marquee
@@ -221,6 +235,11 @@ function initBrandSwiper() {
         }
     }, 50);
 }
+
+// Re-init marquee on orientation change (mobile) or explicit reflow
+window.addEventListener('orientationchange', () => {
+    setTimeout(() => initBrandSwiper(), 300);
+});
 
 /* =========================== Testimonials Carousel =========================== */
 let testimonialSwiperInstance = null;
