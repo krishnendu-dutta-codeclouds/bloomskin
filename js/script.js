@@ -811,4 +811,3 @@ window.addEventListener('load', () => {
         reveal();
     }, '>-0.1');
 });
-});
