@@ -920,30 +920,38 @@ ul { list-style: none; }
 #siteLoader {
     position: fixed;
     inset: 0;
-    background: linear-gradient(180deg,#fff,#faf7fb);
+    background: rgba(255,255,255,0.92);
     z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 #siteLoader[aria-hidden="true"] { display: none; }
-.loader-inner { max-width: 1100px; width: 92%; }
+.loader-inner { max-width: 420px; width: 100%; display:flex; flex-direction:column; align-items:center; gap:12px; }
 .loader-spinner {
-    width: 54px; height: 54px; border-radius: 50%; margin: 0 auto 18px; background: conic-gradient(#e85a8a 0 30%, #f5b5d0 30% 60%, #f0e9f2 60% 100%);
-    animation: spin 1.6s linear infinite;
+    width: 40px; height: 40px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--primary) 0 30%, var(--primary-light) 30% 60%, #f0e9f2 60% 100%);
+    animation: spin 1.4s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
-.skeleton-root { display: grid; gap: 18px; }
-.sk-hero { display:flex; flex-direction:column; gap:10px; }
-.sk-line { height: 18px; border-radius: 8px; background: linear-gradient(90deg,#f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
-.sk-title { width: 50%; height: 28px; border-radius: 10px; }
-.sk-sub { width: 30%; height: 16px; }
-.sk-offer { height: 90px; border-radius: 12px; background: linear-gradient(90deg,#f7eef6 25%, #f3dfec 50%, #f7eef6 75%); animation: shimmer 1.8s linear infinite; }
-.sk-products { display:flex; gap:14px; margin-top:6px; }
-.sk-card { flex:1; height:140px; border-radius:12px; background: linear-gradient(90deg,#f6f6f6 25%, #eee 50%, #f6f6f6 75%); animation: shimmer 1.6s linear infinite; }
-.sk-brands { height:56px; border-radius:10px; background: linear-gradient(90deg,#f6f0f4 25%, #f1dce7 50%, #f6f0f4 75%); animation: shimmer 1.6s linear infinite; }
-.sk-testimonials { height:120px; border-radius:10px; background: linear-gradient(90deg,#f8f8f8 25%, #eee 50%, #f8f8f8 75%); animation: shimmer 1.6s linear infinite; }
+.skeleton-root { display: grid; gap: 12px; width: 100%; }
+.sk-hero { display:flex; flex-direction:column; gap:8px; width:100%; }
+.sk-line { height: 12px; border-radius: 6px; background: linear-gradient(90deg,#f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
+.sk-title { width: 60%; height: 18px; border-radius: 8px; }
+.sk-sub { width: 40%; height: 12px; }
+.sk-offer { height: 56px; border-radius: 10px; background: linear-gradient(90deg,#f7eef6 25%, #f3dfec 50%, #f7eef6 75%); animation: shimmer 1.8s linear infinite; }
+.sk-products { display:flex; gap:8px; margin-top:6px; }
+.sk-card { flex:1; height:90px; border-radius:10px; background: linear-gradient(90deg,#f6f6f6 25%, #eee 50%, #f6f6f6 75%); animation: shimmer 1.6s linear infinite; }
+.sk-brands { height:36px; border-radius:8px; background: linear-gradient(90deg,#f6f0f4 25%, #f1dce7 50%, #f6f0f4 75%); animation: shimmer 1.6s linear infinite; }
+.sk-testimonials { height:80px; border-radius:8px; background: linear-gradient(90deg,#f8f8f8 25%, #eee 50%, #f8f8f8 75%); animation: shimmer 1.6s linear infinite; }
 @keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+
+/* Dark theme for loader */
+@media (prefers-color-scheme: dark) {
+    #siteLoader { background: rgba(10,10,12,0.8); }
+    .loader-spinner { background: conic-gradient(#ffffff 0 30%, rgba(255,255,255,0.6) 30% 60%, rgba(255,255,255,0.2) 60% 100%); }
+    .sk-line, .sk-card, .sk-offer, .sk-brands, .sk-testimonials { background: linear-gradient(90deg,#222 25%, #2b2b2b 50%, #222 75%); }
+}
 
 /* While loading, keep main content hidden; when ready, fade in gently */
 body:not(.site-ready) .header,
