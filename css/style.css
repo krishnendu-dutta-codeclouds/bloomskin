@@ -915,7 +915,7 @@ ul { list-style: none; }
 /* =========================== Testimonials =========================== */
 .testimonial-swiper {
     width: 100%;
-    overflow: visible;
+    overflow-x: hidden;
 }
 .testimonial-swiper .swiper-slide {
     height: auto;
