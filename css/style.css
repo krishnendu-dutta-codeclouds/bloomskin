@@ -881,7 +881,7 @@ ul { list-style: none; }
 .calendar-days { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; box-sizing: border-box; }
 .calendar-day { padding:6px; text-align:center; border-radius:8px; cursor:pointer; display:flex; align-items:center; justify-content:center; aspect-ratio:1/1; min-height:34px; box-sizing: border-box; }
 .calendar-day.inactive { color:#d8d8d8; background:transparent; cursor:default; }
-.calendar-day:hover:not(.inactive) { background:var(--bg-soft); }
+.calendar-day:hover:not(.inactive) { background:var(--primary); }
 .calendar-day.selected { background:var(--primary); color:#fff; }
 .time-section { min-width: 160px; }
 .time-slots { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; }
